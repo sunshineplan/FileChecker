@@ -4,13 +4,32 @@ def file2list(filename):
     file=open(filename)
     data=file.readlines()
     file.close()
-    c=0
+    count=0
     for line in data:
         line=line.strip('\n')
-        data[c]=line
-        c+=1
-    data.sort()
-    return data
+        line=line.strip()
+        data[count]=line
+        count+=1
+    output=[a for a in data if a!='']#删除空值
+    output.sort()
+    return output
+
+def list2file(l,filename):
+    file=open(filename,'w')
+    for line in l:
+        file.write(str(line)+'\n')
+    file.close()
+    return 1
+
+def chk_repeat(filename):
+    file=file2list(filename)
+    repeat=[]
+    for a in file:
+        if file.count(a)!=1:
+            repeat.append(str(a)+'重复了'+str(file.count(a))+'次')
+    output=list(set(repeat))#删除重复值
+    output.sort()
+    return output
 
 def compare(file1,file2):
     print('file1要包含file2')
@@ -30,9 +49,6 @@ a=file2list('file1.txt')
 b=file2list('file2.txt')
 c=compare(a,b)
 print('结果相差',len(c),'条记录')
-result=open('output.txt','w')
-for line in c:
-    result.write(line+'\n')
-result.close()
+list2file(c,'output.txt')
 
 
