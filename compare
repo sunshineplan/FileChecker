@@ -13,15 +13,15 @@ def compare(file1,file2):
     print('file1要包含file2')
     c1=0
     c2=0
-    file3=[]
+    result=[]
     while c2<len(file2):
         if file1[c1]==file2[c2]:
             c1+=1
             c2+=1
         else:
-            file3.append(file1[c1])
+            result.append(file1[c1])
             c1+=1
-    return file3
+    return result
 
 file1=open('file1.txt','r')
 file2=open('file2.txt','r')
@@ -31,9 +31,9 @@ c=compare(a,b)
 file1.close()
 file2.close()
 print('结果相差',len(c),'条记录')
-file3=open('file3.txt','w')
+result=open('output.txt','w')
 for line in c:
-    file3.write(line+'\n')
-file3.close()
+    result.write(line+'\n')
+result.close()
 
 
