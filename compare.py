@@ -1,7 +1,14 @@
 #!/usr/bin/python3
 
-def file2list(file):
+def file2list(filename):
+    file=open(filename)
     data=file.readlines()
+    file.close()
+    c=0
+    for line in data:
+        line=line.strip('\n')
+        data[c]=line
+        c+=1
     data.sort()
     return data
 
@@ -19,13 +26,9 @@ def compare(file1,file2):
             c1+=1
     return result
 
-file1=open('file1.txt','r')
-file2=open('file2.txt','r')
-a=file2list(file1)
-b=file2list(file2)
+a=file2list('file1.txt')
+b=file2list('file2.txt')
 c=compare(a,b)
-file1.close()
-file2.close()
 print('结果相差',len(c),'条记录')
 result=open('output.txt','w')
 for line in c:
