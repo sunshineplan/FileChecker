@@ -1,13 +1,9 @@
 #!/usr/bin/python3
 
 def file2list(file):
-    l=[]
     data=file.readlines()
-    for line in data:
-        temp=line.split()
-        l.append(temp[0])
-    l.sort()
-    return l
+    data.sort()
+    return data
 
 def compare(file1,file2):
     print('file1要包含file2')
