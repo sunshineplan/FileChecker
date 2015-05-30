@@ -29,6 +29,10 @@ def chk_repeat(filename):
             repeat.append(str(a)+'重复了'+str(file.count(a))+'次')
     output=list(set(repeat))#删除重复值
     output.sort()
+    if output!=[]:
+        changed=list(set(file))#将去重后的文件输出，文件名在原来的基础上加"_changed"后缀
+        changed.sort()
+        changedfile=list2file(changed,filename[:filename.rindex('.')]+'_changed'+filename[filename.rindex('.'):])
     return output
 
 def compare(file1,file2):
