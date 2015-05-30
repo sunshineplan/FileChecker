@@ -6,8 +6,8 @@ def file2list(filename):
     file.close()
     count=0
     for line in data:
-        line=line.strip('\n')
-        line=line.strip()
+        line=line.strip('\n')#删除\n
+        line=line.strip()#删除空格
         data[count]=line
         count+=1
     output=[a for a in data if a!='']#删除空值
@@ -19,7 +19,7 @@ def list2file(l,filename):
     for line in l:
         file.write(str(line)+'\n')
     file.close()
-    return 1
+    return 0
 
 def chk_repeat(filename):
     file=file2list(filename)
