@@ -1,7 +1,8 @@
 #!/usr/bin/python3
+from os import getenv
 
 def file2list(filename):
-    file=open(filename)
+    file=open(os.getenv('home')+'\\Desktop\\'+filename)
     data=file.readlines()
     file.close()
     count=0
@@ -15,7 +16,7 @@ def file2list(filename):
     return output
 
 def list2file(l,filename):
-    file=open(filename,'w')
+    file=open(os.getenv('home')+'\\Desktop\\'+filename,'w')
     for line in l:
         file.write(str(line)+'\n')
     file.close()
