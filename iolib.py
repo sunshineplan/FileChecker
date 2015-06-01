@@ -4,7 +4,8 @@
 from os import getenv
 
 def file2list(filename):
-    file=open(getenv('home')+'\\Desktop\\'+filename)
+    #file=open(getenv('home')+'\\Desktop\\'+filename)
+    file=open('C:\\Users\\Sunshine\\Desktop\\'+filename)
     data=file.readlines()
     file.close()
     count=0
@@ -18,7 +19,8 @@ def file2list(filename):
     return output
 
 def list2file(l,filename):
-    file=open(getenv('home')+'\\Desktop\\'+filename,'w')
+    #file=open(getenv('home')+'\\Desktop\\'+filename,'w')
+    file=open('C:\\Users\\Sunshine\\Desktop\\'+filename,'w')
     for line in l:
         file.write(str(line)+'\n')
     file.close()
