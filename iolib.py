@@ -23,8 +23,3 @@ def list2file(l,filename):
         file.write(str(line)+'\n')
     file.close()
     return 0
-
-def printlist(l):
-    for line in l:
-        print(line)
-    return 0
