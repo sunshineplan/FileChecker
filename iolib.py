@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+#code: utf-8
+
 from os import getenv
 
 def file2list(filename):
