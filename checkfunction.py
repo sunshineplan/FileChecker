@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+# coding:utf-8
+
+from iolib import file2list
+from iolib import list2file
 
 def chk_repeat(filename):
     file=file2list(filename)
