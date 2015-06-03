@@ -32,7 +32,7 @@ def main():
                 pause()
         elif choice=='2':
             r1=compare('file1.txt','file2.txt')
-            r2=compare('file2.txt','file1.txt')
+            r2=compare('file2.txt','file1.txt','no')
             if r1+r2==[]:
                 print('file1.txt is same as file2.txt')
                 pause()

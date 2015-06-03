@@ -14,12 +14,12 @@ def precheck(l):
     output.sort()
     return output
     
-def file2list(filename):
+def file2list(filename,displayinfo='yes'):
     file=open(getenv('userprofile')+'\\Desktop\\'+filename)
     data=file.readlines()
     file.close()
     output=precheck(data)
-    if output!=data:
+    if output!=data and displayinfo=='yes':
         print('Warning, '+filename+'不规范，已经删除空格和回车')
     return output
 

@@ -19,9 +19,13 @@ def chk_repeat(filename):
         changedfile=list2file(changed,filename[:i]+'_changed'+filename[i:])
     return output
 
-def compare(file1,file2):
-    f1=file2list(file1)
-    f2=file2list(file2)
+def compare(file1,file2,displayinfo='yes'):
+    if displayinfo=='yes':
+        f1=file2list(file1)
+        f2=file2list(file2)
+    else:
+        f1=file2list(file1,'no')
+        f2=file2list(file2,'no')
     c=0
     result=[]
     while c<len(f1):
