@@ -4,6 +4,7 @@
 from iolib import file2list
 from iolib import list2file
 from iolib import precheck
+from iolib import sortdata
 
 def chk_repeat(filename):
     file=file2list(filename)
@@ -19,11 +20,11 @@ def chk_repeat(filename):
         if file.count(a)!=1:
             repeat.append(str(a)+'重复了'+str(file.count(a))+'次')
     output=list(set(repeat))#删除重复值
-    output.sort()
+    output=sortdata(output)
 #如有重复，将去重后文件输出，原文件名加上"_original"
     if output!=[] or file!=originalfile:
         changed=list(set(file))
-        changed.sort()
+        changed=sortdata(changed)
         list2file(originalfile,filename[:i]+'_original'+filename[i:])
         list2file(changed,filename)
     return output

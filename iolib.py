@@ -12,7 +12,7 @@ def precheck(l):
         l[count]=line
         count+=1
     output=[a for a in l if a!='']      #删除空值
-    output.sort()
+    output=sortdata(output)
     return output
     
 def file2list(filename,check='on',displayinfo='on'):
@@ -43,3 +43,7 @@ def menu():
 
 def pause():
     getpass(prompt='Press Enter to continue...')
+
+def sortdata(data):
+    r=sorted(data, key=lambda item:(int(item.partition(' ')[0]) if item[0].isdigit() else float('inf'), item))
+    return r
