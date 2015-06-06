@@ -23,6 +23,17 @@ def main():
         elif choice=='2':
             chk_repeat('file1.txt')
             chk_repeat('file2.txt')
+            r1=compare('file2.txt','file1.txt',chk_have='on')
+            if r1==[]:
+                print('所需对比的文件完全包含在目标文件内')
+                pause()
+            else:
+                print('所需对比的文件多出以下内容：')
+                print('\n'.join(r1))
+                pause()
+        elif choice=='3':
+            chk_repeat('file1.txt')
+            chk_repeat('file2.txt')
             r1=compare('file1.txt','file2.txt')
             r2=compare('file2.txt','file1.txt','off')
             if r1+r2==[]:
