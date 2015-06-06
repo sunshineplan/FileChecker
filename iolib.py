@@ -20,9 +20,9 @@ def file2list(filename,check='on',displayinfo='on'):
     file=open(path+filename)
     data=file.readlines()
     file.close()
-    if check=='on':
+    if check.lower()=='on':
         output=precheck(data)
-        if output!=data and displayinfo=='on':
+        if output!=data and displayinfo.lower=='on':
             print('Warning, '+filename+'不规范，已经删除空格和回车')
         return output        
     return data
@@ -37,8 +37,7 @@ def list2file(l,filename):
 
 def menu():
     print('1. Check Repeat(Single File)')
-    print('2. Check Have(Two Files)')
-    print('3. File Compare(Two Files)')
+    print('2. File Compare(Two Files)')
     print('Q. Quit')
     return 0
 
