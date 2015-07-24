@@ -39,6 +39,7 @@ def menu():
     print('1. Check Repeat(Single File)')
     print('2. Check Have(Two Files)')
     print('3. File Compare(Two Files)')
+    print('4. Check Continuity(Single File)')
     print('Q. Quit')
     return 0
 

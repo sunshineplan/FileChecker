@@ -2,6 +2,7 @@
 # coding:utf-8
 
 from checkfunction import chk_repeat
+from checkfunction import chk_continuity
 from checkfunction import compare
 from iolib import menu
 from iolib import pause
@@ -54,6 +55,16 @@ def main():
                 #print('\n')
                 print('file2.txt比file1.txt多以下内容：')
                 print('\n'.join(r2))
+                pause()
+        elif choice=='4':
+            r1=chk_continuity('file1.txt')
+            if r1==[]:
+                print('file1.txt完全是连续的')
+                pause()
+            else:
+                print('file1.txt不连续，缺少已下元素：')
+                r1=list(map(str,r1))
+                print('\n'.join(r1))
                 pause()
         else:
             print('Wrong Choice! Please choose again!')

@@ -29,13 +29,17 @@ def chk_repeat(filename):
         list2file(changed,filename)
     return output
 
-def compare(file1,file2,displayinfo='on',chk_have='off'):
-    if displayinfo=='on':
-        f1=file2list(file1)
-        f2=file2list(file2)
+def compare(file1,file2,displayinfo='on',chk_have='off',data_type='file'):
+    if data_type!='file':
+        f1=file1
+        f2=file2
     else:
-        f1=file2list(file1,displayinfo='off')
-        f2=file2list(file2,displayinfo='off')
+        if displayinfo=='on':
+            f1=file2list(file1)
+            f2=file2list(file2)
+        else:
+            f1=file2list(file1,displayinfo='off')
+            f2=file2list(file2,displayinfo='off')
     if chk_have=='on':
         if len(f1)>len(f2):
             print(file1+'比'+file2+'大，检查'+file2+'是否包含于'+file1)
@@ -51,3 +55,16 @@ def compare(file1,file2,displayinfo='on',chk_have='off'):
             result.append(f1[count])
         count+=1
     return result
+
+def chk_continuity(filename):
+    file=file2list(filename)
+    intlist=list(map(int,file))#将字符数组转换成数字数组
+    start=intlist[0]
+    end=intlist[-1]
+    goal=list(range(start,end+1))
+    result=compare(goal,intlist,'off','off','list')
+    return result
+    
+    
+    
+    
