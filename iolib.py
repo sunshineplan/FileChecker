@@ -47,5 +47,6 @@ def pause():
     getpass(prompt='Press Enter to continue...')
 
 def sortdata(data):
-    r=sorted(data, key=lambda item:(int(item.partition(' ')[0]) if item[0].isdigit() else float('inf'), item))
+    #r=sorted(data, key=lambda item:(int(item.partition(' ')[0]) if item[0].isdigit() else float('inf'), item))
+    r=sorted(data)
     return r
