@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+﻿#!/usr/bin/python3
 # coding:utf-8
 
 from iolib import file2list
@@ -18,7 +18,7 @@ def chk_repeat(filename):
     i=filename.rindex('.')
     for a in file:
         if file.count(a)!=1:
-            repeat.append(str(a)+'重复了'+str(file.count(a))+'次')
+            repeat.append(str(a)+'出现了'+str(file.count(a))+'次')
     output=list(set(repeat))#删除重复值
     output=sortdata(output)
 #如有重复，将去重后文件输出，原文件名加上"_original"
