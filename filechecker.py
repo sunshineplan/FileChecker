@@ -6,6 +6,7 @@ from checkfunction import chk_continuity
 from checkfunction import compare
 from iolib import menu
 from iolib import pause
+from iolib import printresult
 
 def main():
     print('Welcome to use File Checker')
@@ -18,8 +19,9 @@ def main():
                 print('file1.txt has no repeat')
                 pause()
             else:
-                print('file1.txt has repeated content:')
-                print('\n'.join(r1))
+                title='file1.txt has repeated content:'
+                print(title)
+                printresult(r1,title)
                 pause()
         elif choice=='2':
             chk_repeat('file1.txt')
@@ -29,8 +31,9 @@ def main():
                 print('所需对比的文件完全包含在目标文件内')
                 pause()
             else:
-                print('所需对比的文件多出以下内容：')
-                print('\n'.join(r1))
+                title='所需对比的文件多出以下内容：'
+                print(title)
+                printresult(r1)
                 pause()
         elif choice=='3':
             chk_repeat('file1.txt')
@@ -42,19 +45,23 @@ def main():
                 pause()
             elif r1==[]:
                 print('file2.txt完全包含file1.txt')
-                print('file2.txt比file1.txt多以下内容：')
-                print('\n'.join(r2))
+                title='file2.txt比file1.txt多以下内容：'
+                print(title)
+                printresult(r2)
             elif r2==[]:
                 print('file1.txt完全包含file2.txt')
-                print('file1.txt比file2.txt多以下内容：')
-                print('\n'.join(r1))
+                title='file1.txt比file2.txt多以下内容：'
+                print(title)
+                printresult(r1)
             else:
                 print('两个文件互相有缺少内容')
-                print('file1.txt比file2.txt多以下内容：')
-                print('\n'.join(r1))
+                title='file1.txt比file2.txt多以下内容：'
+                print(title)
+                printresult(r1,title,'1')
                 #print('\n')
-                print('file2.txt比file1.txt多以下内容：')
-                print('\n'.join(r2))
+                title='file2.txt比file1.txt多以下内容：'
+                print(title)
+                printresult(r2,title,'2')
                 pause()
         elif choice=='4':
             r1=chk_continuity('file1.txt')
@@ -62,9 +69,10 @@ def main():
                 print('file1.txt完全是连续的')
                 pause()
             else:
-                print('file1.txt不连续，缺少已下元素：')
                 r1=list(map(str,r1))
-                print('\n'.join(r1))
+                title='file1.txt不连续，缺少已下元素：'
+                print(title)
+                printresult(r1)
                 pause()
         else:
             print('Wrong Choice! Please choose again!')

@@ -50,3 +50,13 @@ def sortdata(data):
     #r=sorted(data, key=lambda item:(int(item.partition(' ')[0]) if item[0].isdigit() else float('inf'), item))
     r=sorted(data)
     return r
+
+def printresult(r,title='result:',ext=''):
+    filename='result'+ext+'.txt'
+    if len(r)>17:
+        r.insert(0,title)
+        list2file(r,filename)
+        print('由于结果太大，已将其输出到'+filename)
+    else:
+        print('\n'.join(r))
+    return 0
