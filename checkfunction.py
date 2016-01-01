@@ -27,6 +27,7 @@ def chk_repeat(filename):
         changed=sortdata(changed)
         list2file(originalfile,filename[:i]+'_original'+filename[i:])
         list2file(changed,filename)
+        print(filename+'文件已经过规范化处理，原文件保存为'+filename[:i]+'_original'+filename[i:])
     return output
 
 def compare(file1,file2,displayinfo='on',chk_have='off',data_type='file'):
