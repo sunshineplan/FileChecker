@@ -17,7 +17,7 @@ def precheck(l):
     
 def file2list(filename,check='on',displayinfo='on'):
     path=getenv('userprofile')+'\\Desktop\\'
-    file=open(path+filename)
+    file=open(path+filename,encoding='utf-8')
     data=file.readlines()
     file.close()
     if check=='on':
@@ -29,7 +29,7 @@ def file2list(filename,check='on',displayinfo='on'):
 
 def list2file(l,filename):
     path=getenv('userprofile')+'\\Desktop\\'
-    file=open(path+filename,'w')
+    file=open(path+filename,'w',encoding='utf-8')
     for line in l:
         file.write(str(line)+'\n')
     file.close()
