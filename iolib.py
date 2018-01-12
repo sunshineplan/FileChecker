@@ -15,7 +15,7 @@ def precheck(l):
     output=sortdata(output)
     return output
     
-def file2list(filename,check='on',displayinfo='on'):
+def file2list(filename,check='on',displayinfo='on',removeduplicate='off'):
     path=getenv('userprofile')+'\\Desktop\\'
     file=open(path+filename,encoding='utf-8')
     data=file.readlines()
@@ -24,7 +24,9 @@ def file2list(filename,check='on',displayinfo='on'):
         output=precheck(data)
         if output!=data and displayinfo=='on':
             print('Warning, '+filename+'不规范，已经删除空格和回车')
-        return output        
+        data=output
+    if removeduplicate='on':
+        data=list(set(data))            #删除重复值
     return data
 
 def list2file(l,filename):
