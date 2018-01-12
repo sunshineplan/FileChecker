@@ -66,7 +66,7 @@ def saveoriginal(filename,l):
         list2file(originalfile,filename[:i]+'_original'+filename[i:])
         list2file(changed,filename)
         print(filename+'文件已经过规范化处理，原文件保存为'+filename[:i]+'_original'+filename[i:])
-    
+    return 0    
 
 def printresult(r,title='result:',ext=''):
     filename='result'+ext+'.txt'
