@@ -53,6 +53,21 @@ def sortdata(data):
     r=sorted(data)
     return r
 
+def saveoriginal(filename,l):
+    originalfile=file2list(filename,'off')
+    for line in originalfile:
+        line=line.strip('\n')
+        originalfile[count]=line
+        count+=1
+    if l!=originalfile:
+        i=filename.rindex('.')
+        changed=list(set(l))
+        changed=sortdata(changed)
+        list2file(originalfile,filename[:i]+'_original'+filename[i:])
+        list2file(changed,filename)
+        print(filename+'文件已经过规范化处理，原文件保存为'+filename[:i]+'_original'+filename[i:])
+    
+
 def printresult(r,title='result:',ext=''):
     filename='result'+ext+'.txt'
     if len(r)>17:
