@@ -53,7 +53,7 @@ def sortdata(data):
     r=sorted(data)
     return r
 
-def saveoriginal(filename,l):
+def saveoriginal(filename,l):       #如内容有变，将新文件输出，原文件名加上"_original"
     originalfile=file2list(filename,'off')
     for line in originalfile:
         line=line.strip('\n')
