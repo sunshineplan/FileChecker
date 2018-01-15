@@ -7,7 +7,6 @@ from getpass import getpass
 def precheck(l):
     count=0
     for line in l:
-        line=line.strip('\n')           #删除\n
         line=line.strip()               #删除空格
         l[count]=line
         count+=1
@@ -20,12 +19,17 @@ def file2list(filename,check='on',displayinfo='on',removeduplicate='off'):
     file=open(path+filename,encoding='utf-8')
     data=file.readlines()
     file.close()
+    count=0
+    for line in data:
+        line=line.strip('\n')           #删除\n
+        data[count]=line
+        count+=1
     if check=='on':
         output=precheck(data)
         if output!=data and displayinfo=='on':
             print('Warning, '+filename+'不规范，已经删除空格和回车')
         data=output
-    if removeduplicate='on':
+    if removeduplicate=='on':
         data=list(set(data))            #删除重复值
     return data
 
@@ -39,9 +43,10 @@ def list2file(l,filename):
 
 def menu():
     print('1. Check Repeat(Single File)')
-    print('2. Check Have(Two Files)')
-    print('3. File Compare(Two Files)')
-    print('4. Check Continuity(Single File)')
+    print('2. Check Repeat(Two Files)')
+    print('3. Check Have(Two Files)')
+    print('4. File Compare(Two Files)')
+    print('5. Check Continuity(Single File)')
     print('Q. Quit')
     return 0
 
@@ -55,16 +60,11 @@ def sortdata(data):
 
 def saveoriginal(filename,l):       #如内容有变，将新文件输出，原文件名加上"_original"
     originalfile=file2list(filename,'off')
-    for line in originalfile:
-        line=line.strip('\n')
-        originalfile[count]=line
-        count+=1
+    count=0
     if l!=originalfile:
         i=filename.rindex('.')
-        changed=list(set(l))
-        changed=sortdata(changed)
         list2file(originalfile,filename[:i]+'_original'+filename[i:])
-        list2file(changed,filename)
+        list2file(l,filename)
         print(filename+'文件已经过规范化处理，原文件保存为'+filename[:i]+'_original'+filename[i:])
     return 0    
 

@@ -24,6 +24,15 @@ def main():
                 printresult(r1,title)
                 pause()
         elif choice=='2':
+            r1=chk_repeat('file1.txt','file2.txt')
+            if r1==[]:
+                print('Two files have no repeated content.')
+            else:
+                title='Two files have repeated content:'
+                print(title)
+                printresult(r1,title)
+                pause()
+        elif choice=='3':
             chk_repeat('file1.txt')
             chk_repeat('file2.txt')
             r1=compare('file2.txt','file1.txt',chk_have='on')
@@ -35,7 +44,7 @@ def main():
                 print(title)
                 printresult(r1)
                 pause()
-        elif choice=='3':
+        elif choice=='4':
             chk_repeat('file1.txt')
             chk_repeat('file2.txt')
             r1=compare('file1.txt','file2.txt')
@@ -63,7 +72,7 @@ def main():
                 print(title)
                 printresult(r2,title,'2')
                 pause()
-        elif choice=='4':
+        elif choice=='5':
             r1=chk_continuity('file1.txt')
             if r1==[]:
                 print('file1.txt完全是连续的')
