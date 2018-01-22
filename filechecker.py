@@ -2,91 +2,72 @@
 # coding:utf-8
 
 from checkfunction import chk_repeat
-from checkfunction import chk_continuity
+from checkfunction import chk_consecutive
 from checkfunction import compare
 from iolib import menu
 from iolib import pause
-from iolib import printresult
+from iolib import print_result
 
 def main():
-    print('Welcome to use File Checker')
-    menu()
-    choice=input('Please choose one function:')
-    while choice.lower()!='q':
+    while True:
+        choice=menu()
         if choice=='1':
             r1=chk_repeat('file1.txt')
             if r1==[]:
-                print('file1.txt has no repeat')
+                print('file1.txt has no repeated contents.')
                 pause()
             else:
-                title='file1.txt has repeated content:'
-                print(title)
-                printresult(r1,title)
+                print_result(r1,title1='file1.txt has repeated content(s)')
                 pause()
         elif choice=='2':
             r1=chk_repeat('file1.txt','file2.txt')
             if r1==[]:
-                print('Two files have no repeated content.')
+                print('Two files have no repeated contents.')
+                pause()
             else:
-                title='Two files have repeated content:'
-                print(title)
-                printresult(r1,title)
+                print_result(r1,title1='Two files have repeated content(s)')
                 pause()
         elif choice=='3':
             chk_repeat('file1.txt')
             chk_repeat('file2.txt')
-            r1=compare('file2.txt','file1.txt',chk_have='on')
+            r1=compare('file1.txt','file2.txt',chk_have='on')
             if r1==[]:
-                print('所需对比的文件完全包含在目标文件内')
+                print('所需对比的文件完全包含在目标文件内。')
                 pause()
             else:
-                title='所需对比的文件多出以下内容：'
-                print(title)
-                printresult(r1)
+                print_result(r1,title1='所需对比的文件多出以下内容')
                 pause()
         elif choice=='4':
             chk_repeat('file1.txt')
             chk_repeat('file2.txt')
             r1=compare('file1.txt','file2.txt')
-            r2=compare('file2.txt','file1.txt','off')
+            r2=compare('file2.txt','file1.txt')
             if r1+r2==[]:
-                print('file1.txt is same as file2.txt')
+                print('file1.txt is same as file2.txt.')
                 pause()
             elif r1==[]:
-                print('file2.txt完全包含file1.txt')
-                title='file2.txt比file1.txt多以下内容：'
-                print(title)
-                printresult(r2)
+                print('file2.txt完全包含file1.txt。')
+                print_result(r2,title1='file2.txt比file1.txt多以下内容')
             elif r2==[]:
-                print('file1.txt完全包含file2.txt')
-                title='file1.txt比file2.txt多以下内容：'
-                print(title)
-                printresult(r1)
+                print('file1.txt完全包含file2.txt。')
+                print_result(r1,title1='file1.txt比file2.txt多以下内容')
             else:
                 print('两个文件互相有缺少内容')
-                title='file1.txt比file2.txt多以下内容：'
-                print(title)
-                printresult(r1,title,'1')
-                #print('\n')
-                title='file2.txt比file1.txt多以下内容：'
-                print(title)
-                printresult(r2,title,'2')
+                print_result(r1,title1='file1.txt比file2.txt多以下内容',ext='1')
+                print_result(r2,title1='file2.txt比file1.txt多以下内容',ext='2')
                 pause()
         elif choice=='5':
-            r1=chk_continuity('file1.txt')
+            r1=chk_consecutive('file1.txt')
             if r1==[]:
-                print('file1.txt完全是连续的')
+                print('file1.txt contains consecutive number.')
                 pause()
             else:
-                r1=list(map(str,r1))
-                title='file1.txt不连续，缺少已下元素：'
-                print(title)
-                printresult(r1)
+                print_result(r1,title1='file1.txt不连续',title2='缺少以下元素：')
                 pause()
+        elif choice.lower()=='q':
+            break
         else:
-            print('Wrong Choice! Please choose again!')
-        menu()
-        choice=input()            
+            pause(mode='error')
 
 if __name__ == '__main__':
     main()

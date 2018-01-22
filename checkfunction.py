@@ -2,63 +2,65 @@
 # coding:utf-8
 
 from iolib import file2list
-from iolib import sortdata
-from iolib import saveoriginal
+from iolib import sort_data
+from iolib import save_original
 
 def chk_repeat(file1,file2=''):
-    f1=file2list(file1,displayinfo='off')
-    count=0
-    repeat=[]
+    data1=file2list(file1)
+    save_original(file1,data1)
+    if file2!='':
+        data2=file2list(file2)
+        save_original(file2,data2)
+    result=[]
     if file2=='':
-        for a in f1:
-            if f1.count(a)!=1:
-                repeat.append(str(a)+'出现了'+str(f1.count(a))+'次')
+        for i in data1:
+            if data1.count(i)!=1:
+                result.append(str(i)+'出现了'+str(data1.count(i))+'次')
+                result=list(set(result))
     else:
-        f2=file2list(file2,displayinfo='off',removeduplicate='on')
-        for a in f2:
-            if f1.count(a)!=0:
-                repeat.append(a)
-    if repeat!=[]:
-        f2=file2list(file2,displayinfo='off')
-        saveoriginal(file1,f1)
-        saveoriginal(file2,f2)
-    repeat=sortdata(repeat)
-    return repeat
+        data2=file2list(file2,removeduplicate='on')
+        for i in data2:
+            if data1.count(i)!=0:
+                result.append(i)
+    result=sort_data(result)
+    return result
 
-def compare(file1,file2,displayinfo='on',chk_have='off',data_type='file'):
-    if data_type!='file':
-        f1=file1
-        f2=file2
+def compare(file1,file2,chk_have='off',data_type='file'):
+    if data_type=='file':
+        data1=file2list(file1)
+        data2=file2list(file2)
     else:
-        if displayinfo=='on':
-            f1=file2list(file1)
-            f2=file2list(file2)
-        else:
-            f1=file2list(file1,displayinfo='off')
-            f2=file2list(file2,displayinfo='off')
+        data1=file1
+        data2=file2
     if chk_have=='on':
-        if len(f1)>len(f2):
-            print(file1+'比'+file2+'大，检查'+file2+'是否包含于'+file1)
-            tmp=f1
-            f1=f2
-            f2=tmp
-        else:
-            print(file1+'不比'+file2+'大，检查'+file1+'是否包含于'+file2)
+        if len(data1)==len(data2):
+            print(file1+'与'+file2+'长度一致，检查'+file1+'是否包含于'+file2)
+        elif len(data1)<len(data2):
+            print(file2+'比'+file1+'长度大，检查'+file1+'是否包含于'+file2)
+        else: 
+            print(file1+'比'+file2+'长度大，检查'+file2+'是否包含于'+file1)
+            tmp=data1
+            data1=data2
+            data2=tmp
     count=0
     result=[]
-    while count<len(f1):
-        if f1[count] not in f2:
-            result.append(f1[count])
+    while count<len(data1):
+        if data1[count] not in data2:
+            result.append(data1[count])
         count+=1
     return result
 
-def chk_continuity(filename):
-    file=file2list(filename)
-    intlist=list(map(int,file))#将字符数组转换成数字数组
-    start=intlist[0]
-    end=intlist[-1]
-    goal=list(range(start,end+1))
-    result=compare(goal,intlist,'off','off','list')
+def chk_consecutive(filename):
+    data=file2list(filename)
+    int_list=sorted(list(map(int,data)))         #将字符数组转换成数字数组
+    start=int_list[0]
+    end=int_list[-1]
+    full_list=list(range(start,end+1))
+    result=compare(full_list,int_list,data_type='list')
+    result=list(map(str,result))
+    if result!=[]:
+        str_list=list(map(str,int_list))
+        save_original(filename,str_list)
     return result
     
     
