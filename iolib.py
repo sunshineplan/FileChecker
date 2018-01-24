@@ -7,12 +7,12 @@ from os import name
 from getpass import getpass
 
 def precheck(list_data):
-    data=[i.strip() for i in list_data]   #删除空格
-    data=[i for i in data if i!='']     #删除空值
+    data=[i.strip() for i in list_data]     #删除空格
+    data=[i for i in data if i!='']         #删除空值
     output=sort_data(data)
     return output
     
-def file2list(filename,check='on',removeduplicate='off'):
+def file2list(filename,check='on',display_warning='on',remove_duplicate='off'):
     path=getenv('userprofile')+'\\Desktop\\'
     file=open(path+filename,encoding='utf-8')
     data=file.readlines()
@@ -22,7 +22,9 @@ def file2list(filename,check='on',removeduplicate='off'):
         output=precheck(data)
     else:
         output=data
-    if removeduplicate=='on':
+    if display_warning=='on' and output==[]:
+        print('[Warning]'+filename+' has no content.')
+    if remove_duplicate=='on':
         output=list(set(output))            #删除重复值
     return output
 
@@ -67,7 +69,7 @@ def sort_data(list_data):
     return output
 
 def save_original(filename,list_data):            #如内容有变，将新文件输出，原文件名加上"_original"
-    original_data=file2list(filename,check='off')
+    original_data=file2list(filename,check='off',display_warning='off')
     count=0
     if list_data!=original_data:
         i=filename.rindex('.')

@@ -18,7 +18,7 @@ def chk_repeat(file1,file2=''):
                 result.append(str(i)+'出现了'+str(data1.count(i))+'次')
                 result=list(set(result))
     else:
-        data2=file2list(file2,removeduplicate='on')
+        data2=file2list(file2,display_warning='off',remove_duplicate='on')
         for i in data2:
             if data1.count(i)!=0:
                 result.append(i)
