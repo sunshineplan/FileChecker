@@ -25,19 +25,23 @@ def chk_repeat(file1,file2=''):
     result=sort_data(result)
     return result
 
-def compare(file1,file2,data_type='file'):
+def compare(file1,file2,data_type='file',display_warning='on'):
     if data_type=='file':
-        data1=file2list(file1)
-        data2=file2list(file2)
+        if display_warning=='on':
+            data1=file2list(file1)
+            data2=file2list(file2)
+            save_original(file1,data1)
+            save_original(file2,data2)
+        else:
+            data1=file2list(file1,display_warning='off')
+            data2=file2list(file2,display_warning='off')
     else:
         data1=file1
         data2=file2
-    count=0
-    result=[]
-    while count<len(data1):
-        if data1[count] not in data2:
-            result.append(data1[count])
-        count+=1
+    result=data1.copy()
+    for i in data2:
+        if i in result:
+            result.remove(i)
     return result
 
 def chk_consecutive(filename):

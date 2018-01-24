@@ -28,19 +28,19 @@ def main():
                 print_result(r1,title1='Two files have repeated content(s)')
                 pause()
         elif choice=='3':
-            chk_repeat('file1.txt')
-            chk_repeat('file2.txt')
             r1=compare('file1.txt','file2.txt')
-            r2=compare('file2.txt','file1.txt')
+            r2=compare('file2.txt','file1.txt',display_warning='off')
             if r1+r2==[]:
                 print('file1.txt is same as file2.txt.')
                 pause()
             elif r1==[]:
                 print('file2.txt完全包含file1.txt。')
                 print_result(r2,title1='file2.txt比file1.txt多以下内容')
+                pause()
             elif r2==[]:
                 print('file1.txt完全包含file2.txt。')
                 print_result(r1,title1='file1.txt比file2.txt多以下内容')
+                pause()
             else:
                 print('两个文件互相有缺少内容')
                 print_result(r1,title1='file1.txt比file2.txt多以下内容',ext='1')
