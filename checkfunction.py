@@ -25,23 +25,13 @@ def chk_repeat(file1,file2=''):
     result=sort_data(result)
     return result
 
-def compare(file1,file2,chk_have='off',data_type='file'):
+def compare(file1,file2,data_type='file'):
     if data_type=='file':
         data1=file2list(file1)
         data2=file2list(file2)
     else:
         data1=file1
         data2=file2
-    if chk_have=='on':
-        if len(data1)==len(data2):
-            print(file1+'与'+file2+'长度一致，检查'+file1+'是否包含于'+file2)
-        elif len(data1)<len(data2):
-            print(file2+'比'+file1+'长度大，检查'+file1+'是否包含于'+file2)
-        else: 
-            print(file1+'比'+file2+'长度大，检查'+file2+'是否包含于'+file1)
-            tmp=data1
-            data1=data2
-            data2=tmp
     count=0
     result=[]
     while count<len(data1):

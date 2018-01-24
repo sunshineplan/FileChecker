@@ -30,16 +30,6 @@ def main():
         elif choice=='3':
             chk_repeat('file1.txt')
             chk_repeat('file2.txt')
-            r1=compare('file1.txt','file2.txt',chk_have='on')
-            if r1==[]:
-                print('所需对比的文件完全包含在目标文件内。')
-                pause()
-            else:
-                print_result(r1,title1='所需对比的文件多出以下内容')
-                pause()
-        elif choice=='4':
-            chk_repeat('file1.txt')
-            chk_repeat('file2.txt')
             r1=compare('file1.txt','file2.txt')
             r2=compare('file2.txt','file1.txt')
             if r1+r2==[]:
@@ -56,7 +46,7 @@ def main():
                 print_result(r1,title1='file1.txt比file2.txt多以下内容',ext='1')
                 print_result(r2,title1='file2.txt比file1.txt多以下内容',ext='2')
                 pause()
-        elif choice=='5':
+        elif choice=='4':
             r1=chk_consecutive('file1.txt')
             if r1==[]:
                 print('file1.txt contains consecutive number.')
