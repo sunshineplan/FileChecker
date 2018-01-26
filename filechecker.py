@@ -15,7 +15,7 @@ def main():
             try:
                 r1=chk_repeat('file1.txt')
             except FileNotFoundError:
-                print('file1.txt not found. Please put file1.txt on the Desktop.')
+                print('[Error]file1.txt not found. Please put file1.txt on the Desktop.')
                 pause()
             else:
                 if r1==[]:
@@ -28,7 +28,7 @@ def main():
             try:
                 r1=chk_repeat('file1.txt','file2.txt')
             except FileNotFoundError:
-                print('file1.txt or file2.txt not found. Please put this files on the Desktop.')
+                print('[Error]file1.txt or file2.txt not found. Please put this files on the Desktop.')
                 pause()
             else:
                 if r1==[]:
@@ -42,7 +42,7 @@ def main():
                 r1=compare('file1.txt','file2.txt')
                 r2=compare('file2.txt','file1.txt',display_warning='off')
             except FileNotFoundError:
-                print('file1.txt or file2.txt not found. Please put this files on the Desktop.')
+                print('[Error]file1.txt or file2.txt not found. Please put this files on the Desktop.')
                 pause()
             else:
                 if r1+r2==[]:
@@ -65,7 +65,10 @@ def main():
             try:
                 r1=chk_consecutive('file1.txt')
             except FileNotFoundError:
-                print('file1.txt not found. Please put file1.txt on the Desktop.')
+                print('[Error]file1.txt not found. Please put file1.txt on the Desktop.')
+                pause()
+            except ValueError:
+                print('[Error]file1.txt contains non-numeric content. Please check and try again!')
                 pause()
             else:
                 if r1==[]:
