@@ -5,12 +5,14 @@ from iolib import file2list
 from iolib import sort_data
 from iolib import save_original
 
-def chk_repeat(file1,file2=''):
+def chk_repeat(file1,file2='',display_warning='on'):
     data1=file2list(file1)
-    save_original(file1,data1)
+    if display_warning=='on':
+        save_original(file1,data1)
     if file2!='':
         data2=file2list(file2)
-        save_original(file2,data2)
+        if display_warning=='on':
+            save_original(file2,data2)
     result=[]
     if file2=='':
         for i in data1:

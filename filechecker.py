@@ -71,6 +71,8 @@ def main():
                 print('[Error]file1.txt contains non-numeric content. Please check and try again!')
                 pause()
             else:
+                if chk_repeat('file1.txt',display_warning='off')!=[]:
+                    print('[Warning]file1.txt has repeated content(s), you can check repeat later.')
                 if r1==[]:
                     print('file1.txt contains consecutive number.')
                     pause()
