@@ -67,14 +67,18 @@ def sort_data(list_data):
     output=sorted(list_data)
     return output
 
-def save_original(filename,list_data):            #如内容有变，将新文件输出，原文件名加上"_original"
+def save_original(filename,list_data,mode='change'):    #如内容有变，将新文件输出，原文件名加上"_original"
     original_data=file2list(filename,check='off',display_warning='off')
     count=0
     if list_data!=original_data:
         i=filename.rindex('.')
-        list2file(original_data,filename[:i]+'_original'+filename[i:])
-        list2file(list_data,filename)
-        print('[Warning]'+filename+'已经过规范化处理，原文件保存为'+filename[:i]+'_original'+filename[i:])
+        if mode=='change':
+            list2file(list_data,filename)
+            list2file(original_data,filename[:i]+'_original'+filename[i:])
+            print('[Warning]'+filename+'已经过规范化处理，原文件保存为'+filename[:i]+'_original'+filename[i:])
+        else:
+            list2file(list_data,filename[:i]+'_new'+filename[i:])
+            print(filename+'删除重复内容后，新文件保存为'+filename[:i]+'_new'+filename[i:])
     return 0    
 
 def print_result(result,title1='',title2='result:',ext=''):

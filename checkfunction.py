@@ -27,6 +27,11 @@ def chk_repeat(file1,file2='',display_warning='on'):
     result=sort_data(result)
     return result
 
+def remove_repeat(filename):
+    data=sort_data(list(set(file2list(filename))))
+    save_original(filename,data,mode='remove_repeat')
+    return 0
+
 def compare(file1,file2,data_type='file',display_warning='on'):
     if data_type=='file':
         if display_warning=='on':

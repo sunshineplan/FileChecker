@@ -2,6 +2,7 @@
 # coding:utf-8
 
 from checkfunction import chk_repeat
+from checkfunction import remove_repeat
 from checkfunction import chk_consecutive
 from checkfunction import compare
 from iolib import menu
@@ -23,6 +24,15 @@ def main():
                     pause()
                 else:
                     print_result(r1,title1='file1.txt has repeated content(s)')
+                    choice=input('Do you want to remove duplicate contents (yes/no)?')
+                    while True:
+                        if choice.lower()=='yes':
+                            remove_repeat('file1.txt')
+                            break
+                        elif choice.lower()=='no':
+                            break
+                        else:
+                            choice=input("Please type 'yes' or 'no':")
                     pause()
         elif choice=='2':
             try:
