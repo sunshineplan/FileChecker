@@ -4,8 +4,10 @@
 from iolib import file2list
 from iolib import sort_data
 from iolib import save_original
+from time import time
 
 def chk_repeat(file1,file2='',display_warning='on'):
+    start_time=time()
     data1=file2list(file1)
     if display_warning=='on':
         save_original(file1,data1)
@@ -25,14 +27,11 @@ def chk_repeat(file1,file2='',display_warning='on'):
             if data1.count(i)!=0:
                 result.append(i)
     result=sort_data(result)
-    return result
-
-def remove_repeat(filename):
-    data=sort_data(list(set(file2list(filename))))
-    save_original(filename,data,mode='remove_repeat')
-    return 0
+    elapsed_time=time()-start_time
+    return result,elapsed_time
 
 def compare(file1,file2,data_type='file',display_warning='on'):
+    start_time=time()
     if data_type=='file':
         if display_warning=='on':
             data1=file2list(file1)
@@ -49,20 +48,23 @@ def compare(file1,file2,data_type='file',display_warning='on'):
     for i in data2:
         if i in result:
             result.remove(i)
-    return result
+    elapsed_time=time()-start_time
+    return result,elapsed_time
 
 def chk_consecutive(filename):
+    start_time=time()
     data=file2list(filename)
     int_list=sorted(list(map(int,data)))         #将字符数组转换成数字数组
     start=int_list[0]
     end=int_list[-1]
     full_list=list(range(start,end+1))
-    result=compare(full_list,int_list,data_type='list')
+    result,_=compare(full_list,int_list,data_type='list')
     result=list(map(str,result))
     if result!=[]:
         str_list=list(map(str,int_list))
         save_original(filename,str_list)
-    return result
+    elapsed_time=time()-start_time
+    return result,elapsed_time
     
     
     

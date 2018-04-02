@@ -79,9 +79,14 @@ def save_original(filename,list_data,mode='change'):    #如内容有变，将�
         else:
             list2file(list_data,filename[:i]+'_new'+filename[i:])
             print(filename+'删除重复内容后，新文件保存为'+filename[:i]+'_new'+filename[i:])
-    return 0    
+    return 0
 
-def print_result(result,title1='',title2='result:',ext=''):
+def remove_repeat(filename):
+    data=sort_data(list(set(file2list(filename))))
+    save_original(filename,data,mode='remove_repeat')
+    return 0
+
+def print_result(result,title1='',title2='result:',ext='',elapsed_time=0):
     print(title1)
     filename='result'+ext+'.txt'
     if len(result)>17:
@@ -92,4 +97,6 @@ def print_result(result,title1='',title2='result:',ext=''):
     else:
         print(title2)
         print('\n'.join(result))
+    if elapsed_time!=0:
+        print('\n本次处理耗时'+str(round(elapsed_time,3))+'秒')
     return 0
