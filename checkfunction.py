@@ -17,10 +17,13 @@ def chk_repeat(file1,file2='',display_warning='on'):
             save_original(file2,data2)
     result=[]
     if file2=='':
+        tmp=''
         for i in data1:
+            if i==tmp:
+                continue
             if data1.count(i)!=1:
                 result.append(str(i)+'出现了'+str(data1.count(i))+'次')
-                result=list(set(result))
+            tmp=i
     else:
         data2=file2list(file2,display_warning='off',remove_duplicate='on')
         for i in data2:
