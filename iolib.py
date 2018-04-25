@@ -84,17 +84,19 @@ def remove_repeat(filename):
     save_original(filename,data,mode='remove_repeat')
     return 0
 
-def print_result(result,title1='',title2='result:',ext='',elapsed_time=0):
-    print(title1)
+def print_result(result,title1='',title2='result:',ext='',elapsed_time=-1,result2file='on'):
+    content=[]
+    content.append(title1)
     filename='result'+ext+'.txt'
-    if len(result)>17:
+    if len(result)>17 and result2file=='on':
         result.insert(0,title2)
         result.insert(0,title1)
         list2file(result,filename)
-        print('由于结果太大，已将其输出到'+filename)
+        content.append('由于结果太大，已将其输出到'+filename)
     else:
-        print(title2)
-        print('\n'.join(result))
-    if elapsed_time!=0:
-        print('\n本次处理耗时'+str(round(elapsed_time,3))+'秒')
-    return 0
+        content.append(title2)
+        content.append('\n'.join(result))
+    if elapsed_time>=0:
+        content.append('\n本次处理耗时'+str(round(elapsed_time,3))+'秒')
+    print('\n'.join(content))
+    return content
