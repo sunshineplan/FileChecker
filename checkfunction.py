@@ -31,7 +31,7 @@ def chk_repeat(file1,file2='',data_type='file',display_warning='on'):
                 result.append(str(i)+'出现了'+str(data1.count(i))+'次')
             tmp=i
     else:
-        data2=file2list(file2,display_warning='off',remove_duplicate='on')
+        data2=list(set(data2))
         for i in data2:
             if data1.count(i)!=0:
                 result.append(i)

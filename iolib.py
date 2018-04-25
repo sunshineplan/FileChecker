@@ -12,7 +12,7 @@ def precheck(list_data):
     output=sort_data(data)
     return output
     
-def file2list(filename,check='on',display_warning='on',remove_duplicate='off'):
+def file2list(filename,check='on',display_warning='on'):
     path=getenv('userprofile')+'\\Desktop\\'
     file=open(path+filename,encoding='utf-8')
     data=file.readlines()
@@ -24,8 +24,6 @@ def file2list(filename,check='on',display_warning='on',remove_duplicate='off'):
         output=data
     if display_warning=='on' and output==[]:
         print('[Warning]'+filename+' has no content.')
-    if remove_duplicate=='on':
-        output=list(set(output))            #删除重复值
     return output
 
 def list2file(list_data,filename):
