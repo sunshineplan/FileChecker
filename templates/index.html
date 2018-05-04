@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Sensitive Words Check">
+    <meta name="keywords" content="HTML,CSS,Python,JavaScript,jQuery,Bootstrap,Flask,JSON">
+    <meta name="author" content="Sunshine">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Checker</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <script type=text/javascript>
+        $(function() {
+            $('#chk_repeat_1').on('click', function() {
+                $.post('/check', {
+                    type: 'chk_repeat_1',
+                    file1: $('#inputA').val()
+                }, function(data) {
+                    $('#output').val(String(data.result).replace(/,/g, '\n'));
+                }, 'json');
+                return false;
+            });
+            $('#chk_repeat_2').on('click', function() {
+                $.post('/check', {
+                    type: 'chk_repeat_2',
+                    file1: $('#inputA').val(),
+                    file2: $('#inputB').val()
+                }, function(data) {
+                    $('#output').val(String(data.result).replace(/,/g, '\n'));
+                }, 'json');
+                return false;
+            });
+            $('#compare').on('click', function() {
+                $.post('/check', {
+                    type: 'compare',
+                    file1: $('#inputA').val(),
+                    file2: $('#inputB').val()
+                }, function(data) {
+                    $('#output').val(String(data.result).replace(/,/g, '\n'));
+                }, 'json');
+                return false;
+            });
+            $('#chk_consecutive').on('click', function() {
+                $.post('/check', {
+                    type: 'chk_consecutive',
+                    file1: $('#inputA').val()
+                }, function(data) {
+                    $('#output').val(String(data.result).replace(/,/g, '\n'));
+                }, 'json');
+                return false;
+            });
+            $(document).on("ajaxSend", function(){
+                $('#output').val('Processing...');
+                return false;
+            });   
+        });
+
+        function copyResult() {
+            var result = document.getElementById('output');
+            result.select();
+            document.execCommand('Copy');
+            result.setSelectionRange(0,0);
+            if (result.value !== '') {
+                alert('Text copied.');
+            };
+        }
+
+        function clearContents() {
+            $('#inputA').val('');
+            $('#inputB').val('');
+            $('#output').val('');
+        }
+    </script>
+    <style type="text/css">
+        textarea {
+            resize: none;
+            padding-left: 0.8em;
+            height: 800px;
+        }
+
+        .form-control {
+            border: 1px solid #007bff;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="navbar navbar-expand navbar-light flex-column flex-md-row">
+        <a class="navbar-brand text-primary m-0 mr-md-3" href="/" style="font-size:24px;">File Checker</a>
+    </header>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-3">
+                <label for="inputA">File1</label>
+                <textarea class="form-control" id="inputA" placeholder="Paste contents here..."></textarea>
+            </div>
+            <div class="col-3">
+                <label for="inputB">File2</label>
+                <textarea class="form-control" id="inputB" placeholder="Paste contents here..."></textarea>
+            </div>
+            <div class="col-2 pt-5">
+                <button onclick="javascript:void(0)" id="chk_repeat_1" type="button" class="btn btn-primary btn-block">Check Repeat(Single File)</button>
+                <button onclick="javascript:void(0)" id="chk_repeat_2" type="button" class="btn btn-primary btn-block">Check Repeat(Two Files)</button>
+                <button onclick="javascript:void(0)" id="compare" type="button" class="btn btn-primary btn-block">File Compare(Two Files)</button>
+                <button onclick="javascript:void(0)" id="chk_consecutive" type="button" class="btn btn-primary btn-block">Check Consecutive(Single File)</button>
+                <br>
+                <br>
+                <button onclick="copyResult()" type="button" class="btn btn-primary btn-block">Copy Result(to Clipboard)</button>
+                <br>
+                <br>
+                <button onclick="clearContents()" type="button" class="btn btn-primary btn-block">Clear</button>
+            </div>
+            <div class="col-4">
+                <label for="output">Result</label>
+                <textarea class="form-control" id="output" readonly></textarea>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+
