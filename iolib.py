@@ -84,7 +84,7 @@ def remove_repeat(filename):
     save_original(filename,data,mode='remove_repeat')
     return 0
 
-def print_result(result,title1='',title2='result:',ext='',elapsed_time=-1,result2file='on'):
+def print_result(result,title1='',title2='result:',ext='',elapsed_time=-1,result2file='on',display='on'):
     content=[]
     content.append(title1)
     filename='result'+ext+'.txt'
@@ -98,5 +98,6 @@ def print_result(result,title1='',title2='result:',ext='',elapsed_time=-1,result
         content.append('\n'.join(result))
     if elapsed_time>=0:
         content.append('\n本次处理耗时'+str(round(elapsed_time,3))+'秒')
-    print('\n'.join(content))
+    if display=='on':
+        print('\n'.join(content))
     return content
