@@ -96,6 +96,7 @@ def filechecker():
                     title1='File1比File2多以下内容',
                     result2file='off',
                     display='off'))
+            result.append('')
             result.append(
                 print_result(
                     r2,

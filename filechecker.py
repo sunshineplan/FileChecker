@@ -73,6 +73,7 @@ def main():
                 else:
                     print('两个文件互相有缺少内容')
                     print_result(r1,title1='file1.txt比file2.txt多以下内容',ext='1')
+                    print()
                     print_result(r2,title1='file2.txt比file1.txt多以下内容',ext='2',elapsed_time=elapsed_time)
                     pause()
         elif choice=='4':
