@@ -71,7 +71,6 @@ def filechecker():
             result.append('Duration for process: ' +
                           str(round(elapsed_time, 3)) + ' sec.')
         elif r1 == []:
-            result.append('File2完全包含File1。')
             result.append(
                 print_result(
                     r2,
@@ -79,8 +78,8 @@ def filechecker():
                     elapsed_time=elapsed_time,
                     result2file='off',
                     display='off'))
+            result.append('File2完全包含File1。\n')
         elif r2 == []:
-            result.append('File1完全包含File2。')
             result.append(
                 print_result(
                     r1,
@@ -88,14 +87,15 @@ def filechecker():
                     elapsed_time=elapsed_time,
                     result2file='off',
                     display='off'))
+            result.append('File1完全包含File2。\n')
         else:
-            result.append('两个文件互相有缺少内容')
             result.append(
                 print_result(
                     r1,
                     title1='File1比File2多以下内容',
                     result2file='off',
                     display='off'))
+            result.append('两个文件互相有缺少内容\n')
             result.append('')
             result.append(
                 print_result(

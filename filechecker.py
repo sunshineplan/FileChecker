@@ -59,19 +59,19 @@ def main():
                 pause()
             else:
                 if r1+r2==[]:
-                    print('file1.txt is same as file2.txt.')
-                    print('\nDuration for process: '+str(round(elapsed_time,3))+' sec.')
+                    print('file1.txt is same as file2.txt.\n')
+                    print('Duration for process: '+str(round(elapsed_time,3))+' sec.')
                     pause()
                 elif r1==[]:
-                    print('file2.txt完全包含file1.txt。')
+                    print('file2.txt完全包含file1.txt。\n')
                     print_result(r2,title1='file2.txt比file1.txt多以下内容',elapsed_time=elapsed_time)
                     pause()
                 elif r2==[]:
-                    print('file1.txt完全包含file2.txt。')
+                    print('file1.txt完全包含file2.txt。\n')
                     print_result(r1,title1='file1.txt比file2.txt多以下内容',elapsed_time=elapsed_time)
                     pause()
                 else:
-                    print('两个文件互相有缺少内容')
+                    print('两个文件互相有缺少内容\n')
                     print_result(r1,title1='file1.txt比file2.txt多以下内容',ext='1')
                     print()
                     print_result(r2,title1='file2.txt比file1.txt多以下内容',ext='2',elapsed_time=elapsed_time)
