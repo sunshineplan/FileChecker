@@ -25,8 +25,7 @@ def filechecker():
     data2 = precheck(str(file2).split('\n'))
     result = []
     if data1 == []:
-        result.append('File1 was empty.\nPlease enter someting...')
-        return jsonify(result=result)
+        return jsonify(result='File1 was empty.\nPlease enter someting...')
     if type == 'chk_repeat_1':
         r1, elapsed_time = chk_repeat(data1, data_type='list')
         if r1 == []:
@@ -43,8 +42,7 @@ def filechecker():
                     display='off'))
     elif type == 'chk_repeat_2':
         if data2 == []:
-            result.append('File2 was empty.\nPlease enter someting...')
-            return jsonify(result=result)
+            return jsonify(result='File2 was empty.\nPlease enter someting...')
         r1, elapsed_time = chk_repeat(data1, data2, data_type='list')
         if r1 == []:
             result.append('Two files have no repeated contents.\n')
@@ -60,8 +58,7 @@ def filechecker():
                     display='off'))
     elif type == 'compare':
         if data2 == []:
-            result.append('File2 was empty.\nPlease enter someting...')
-            return jsonify(result=result)
+            return jsonify(result='File2 was empty.\nPlease enter someting...')
         r1, elapsed_time1 = compare(data1, data2, data_type='list')
         r2, elapsed_time2 = compare(
             data2, data1, display_warning='off', data_type='list')
