@@ -100,4 +100,5 @@ def print_result(result,title1='',title2='result:',ext='',elapsed_time=-1,result
         content.append('\n本次处理耗时'+str(round(elapsed_time,3))+'秒')
     if display=='on':
         print('\n'.join(content))
+        return 0
     return content
