@@ -18,7 +18,7 @@
                     type: 'chk_repeat_1',
                     file1: $('#inputA').val()
                 }, function(data) {
-                    $('#output').val(String(data.result).replace(/,/g, '\n'));
+                    $('#output').val(data.result);
                 }, 'json');
                 return false;
             });
@@ -28,7 +28,7 @@
                     file1: $('#inputA').val(),
                     file2: $('#inputB').val()
                 }, function(data) {
-                    $('#output').val(String(data.result).replace(/,/g, '\n'));
+                    $('#output').val(data.result);
                 }, 'json');
                 return false;
             });
@@ -38,7 +38,7 @@
                     file1: $('#inputA').val(),
                     file2: $('#inputB').val()
                 }, function(data) {
-                    $('#output').val(String(data.result).replace(/,/g, '\n'));
+                    $('#output').val(data.result);
                 }, 'json');
                 return false;
             });
@@ -47,7 +47,7 @@
                     type: 'chk_consecutive',
                     file1: $('#inputA').val()
                 }, function(data) {
-                    $('#output').val(String(data.result).replace(/,/g, '\n'));
+                    $('#output').val(data.result);
                 }, 'json');
                 return false;
             });

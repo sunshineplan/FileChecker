@@ -33,13 +33,12 @@ def filechecker():
             result.append('Duration for process: ' +
                           str(round(elapsed_time, 3)) + ' sec.')
         else:
-            result.append(
-                print_result(
-                    r1,
-                    title1='File1 has repeated content(s)',
-                    elapsed_time=elapsed_time,
-                    result2file='off',
-                    display='off'))
+            result += print_result(
+                r1,
+                title1='File1 has repeated content(s)',
+                elapsed_time=elapsed_time,
+                result2file='off',
+                display='off')
     elif type == 'chk_repeat_2':
         if data2 == []:
             return jsonify(result='File2 was empty.\nPlease enter someting...')
@@ -49,13 +48,12 @@ def filechecker():
             result.append('Duration for process: ' +
                           str(round(elapsed_time, 3)) + ' sec.')
         else:
-            result.append(
-                print_result(
-                    r1,
-                    title1='Two files have repeated content(s)',
-                    elapsed_time=elapsed_time,
-                    result2file='off',
-                    display='off'))
+            result += print_result(
+                r1,
+                title1='Two files have repeated content(s)',
+                elapsed_time=elapsed_time,
+                result2file='off',
+                display='off')
     elif type == 'compare':
         if data2 == []:
             return jsonify(result='File2 was empty.\nPlease enter someting...')
@@ -68,39 +66,32 @@ def filechecker():
             result.append('Duration for process: ' +
                           str(round(elapsed_time, 3)) + ' sec.')
         elif r1 == []:
-            result.append(
-                print_result(
-                    r2,
-                    title1='File2比File1多以下内容',
-                    elapsed_time=elapsed_time,
-                    result2file='off',
-                    display='off'))
             result.append('File2完全包含File1。\n')
+            result += print_result(
+                r2,
+                title1='File2比File1多以下内容',
+                elapsed_time=elapsed_time,
+                result2file='off',
+                display='off')
         elif r2 == []:
-            result.append(
-                print_result(
-                    r1,
-                    title1='File1比File2多以下内容',
-                    elapsed_time=elapsed_time,
-                    result2file='off',
-                    display='off'))
             result.append('File1完全包含File2。\n')
+            result += print_result(
+                r1,
+                title1='File1比File2多以下内容',
+                elapsed_time=elapsed_time,
+                result2file='off',
+                display='off')
         else:
-            result.append(
-                print_result(
-                    r1,
-                    title1='File1比File2多以下内容',
-                    result2file='off',
-                    display='off'))
             result.append('两个文件互相有缺少内容\n')
+            result += print_result(
+                r1, title1='File1比File2多以下内容', result2file='off', display='off')
             result.append('')
-            result.append(
-                print_result(
-                    r2,
-                    title1='File2比File1多以下内容',
-                    elapsed_time=elapsed_time,
-                    result2file='off',
-                    display='off'))
+            result += print_result(
+                r2,
+                title1='File2比File1多以下内容',
+                elapsed_time=elapsed_time,
+                result2file='off',
+                display='off')
     elif type == 'chk_consecutive':
         try:
             r1, elapsed_time1 = chk_consecutive(data1, data_type='list')
@@ -121,15 +112,15 @@ def filechecker():
                 result.append('Duration for process: ' +
                               str(round(elapsed_time, 3)) + ' sec.')
             else:
-                result.append(
-                    print_result(
-                        r1,
-                        title1='File1不连续',
-                        title2='缺少以下元素：',
-                        elapsed_time=elapsed_time,
-                        result2file='off',
-                        display='off'))
-    return jsonify(result=result)
+                result += print_result(
+                    r1,
+                    title1='File1不连续',
+                    title2='缺少以下元素：',
+                    elapsed_time=elapsed_time,
+                    result2file='off',
+                    display='off')
+    output = '\n'.join(result)
+    return jsonify(result=output)
 
 
 if __name__ == '__main__':
