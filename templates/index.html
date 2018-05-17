@@ -16,7 +16,7 @@
             $('#chk_duplicates_1').on('click', function() {
                 $.post('/check', {
                     type: 'chk_duplicates_1',
-                    file1: $('#inputA').val()
+                    data1: $('#inputA').val()
                 }, function(data) {
                     $('#output').val(data.result);
                 }, 'json');
@@ -25,8 +25,8 @@
             $('#chk_duplicates_2').on('click', function() {
                 $.post('/check', {
                     type: 'chk_duplicates_2',
-                    file1: $('#inputA').val(),
-                    file2: $('#inputB').val()
+                    data1: $('#inputA').val(),
+                    data2: $('#inputB').val()
                 }, function(data) {
                     $('#output').val(data.result);
                 }, 'json');
@@ -35,8 +35,8 @@
             $('#compare').on('click', function() {
                 $.post('/check', {
                     type: 'compare',
-                    file1: $('#inputA').val(),
-                    file2: $('#inputB').val()
+                    data1: $('#inputA').val(),
+                    data2: $('#inputB').val()
                 }, function(data) {
                     $('#output').val(data.result);
                 }, 'json');
@@ -45,7 +45,7 @@
             $('#chk_consecutive').on('click', function() {
                 $.post('/check', {
                     type: 'chk_consecutive',
-                    file1: $('#inputA').val()
+                    data1: $('#inputA').val()
                 }, function(data) {
                     $('#output').val(data.result);
                 }, 'json');
@@ -93,21 +93,21 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-3">
-                <label for="inputA">File1</label>
+                <label for="inputA">Data1</label>
                 <textarea class="form-control" id="inputA" placeholder="Paste content here..."></textarea>
             </div>
             <div class="col-3">
-                <label for="inputB">File2</label>
+                <label for="inputB">Data2</label>
                 <textarea class="form-control" id="inputB" placeholder="Paste content here..."></textarea>
             </div>
             <div class="col-2 pt-5">
-                <button onclick="javascript:void(0)" id="chk_duplicates_1" type="button" class="btn btn-primary btn-block">Check Duplicates(Single File)</button>
-                <button onclick="javascript:void(0)" id="chk_duplicates_2" type="button" class="btn btn-primary btn-block">Check Duplicates(Two Files)</button>
-                <button onclick="javascript:void(0)" id="chk_consecutive" type="button" class="btn btn-primary btn-block">Check Consecutive(Single File)</button>
+                <button onclick="javascript:void(0)" id="chk_duplicates_1" type="button" class="btn btn-primary btn-block">Check Duplicates (Single Data)</button>
+                <button onclick="javascript:void(0)" id="chk_duplicates_2" type="button" class="btn btn-primary btn-block">Check Duplicates (Two Data)</button>
                 <button onclick="javascript:void(0)" id="compare" type="button" class="btn btn-primary btn-block">Cross Compare (Two Data)</button>
+                <button onclick="javascript:void(0)" id="chk_consecutive" type="button" class="btn btn-primary btn-block">Check Consecutive (Single Data)</button>
                 <br>
                 <br>
-                <button onclick="copyResult()" type="button" class="btn btn-primary btn-block">Copy Result(to Clipboard)</button>
+                <button onclick="copyResult()" type="button" class="btn btn-primary btn-block">Copy Result (to Clipboard)</button>
                 <br>
                 <br>
                 <button onclick="clearAll()" type="button" class="btn btn-primary btn-block">Clear</button>

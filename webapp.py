@@ -19,76 +19,76 @@ def index():
 @app.route('/check', methods=['POST'])
 def filechecker():
     type = request.form.get('type')
-    file1 = request.form.get('file1')
-    file2 = request.form.get('file2')
-    data1 = precheck(str(file1).split('\n'))
-    data2 = precheck(str(file2).split('\n'))
+    data1 = request.form.get('data1')
+    data2 = request.form.get('data2')
+    data1 = precheck(str(data1).split('\n'))
+    data2 = precheck(str(data2).split('\n'))
     result = []
     if data1 == []:
-        return jsonify(result='File1 was empty.\nPlease enter someting...')
+        return jsonify(result='Data1 is empty.\nPlease enter someting...')
     if type == 'chk_duplicates_1':
         r1, elapsed_time = chk_duplicates(data1, data_type='list')
         if r1 == []:
-            result.append('File1 has no duplicate values.\n')
+            result.append('Data1 contains no duplicate values.\n')
             result.append('Duration for process: ' +
                           str(round(elapsed_time, 3)) + ' sec.')
         else:
             result += print_result(
                 r1,
-                title1='File1 has duplicate values',
+                title1='Duplicate values found in Data1',
                 elapsed_time=elapsed_time,
                 result2file='off',
                 display='off')
     elif type == 'chk_duplicates_2':
         if data2 == []:
-            return jsonify(result='File2 was empty.\nPlease enter someting...')
+            return jsonify(result='Data2 is empty.\nPlease enter someting...')
         r1, elapsed_time = chk_duplicates(data1, data2, data_type='list')
         if r1 == []:
-            result.append('Two files have no duplicate values.\n')
+            result.append('Two data contain no duplicate values.\n')
             result.append('Duration for process: ' +
                           str(round(elapsed_time, 3)) + ' sec.')
         else:
             result += print_result(
                 r1,
-                title1='Two files have duplicate values',
+                title1='Duplicate values found between two data',
                 elapsed_time=elapsed_time,
                 result2file='off',
                 display='off')
     elif type == 'compare':
         if data2 == []:
-            return jsonify(result='File2 was empty.\nPlease enter someting...')
+            return jsonify(result='Data2 is empty.\nPlease enter someting...')
         r1, elapsed_time1 = compare(data1, data2, data_type='list')
         r2, elapsed_time2 = compare(
             data2, data1, display_warning='off', data_type='list')
         elapsed_time = elapsed_time1 + elapsed_time2
         if r1 + r2 == []:
-            result.append('File1 is same as File2.\n')
+            result.append('Data1 is same as Data2.\n')
             result.append('Duration for process: ' +
                           str(round(elapsed_time, 3)) + ' sec.')
         elif r1 == []:
-            result.append('File2完全包含File1。\n')
+            result.append('Data2完全包含Data1。\n')
             result += print_result(
                 r2,
-                title1='File2比File1多以下内容',
+                title1='Data2比Data1多以下内容',
                 elapsed_time=elapsed_time,
                 result2file='off',
                 display='off')
         elif r2 == []:
-            result.append('File1完全包含File2。\n')
+            result.append('Data1完全包含Data2。\n')
             result += print_result(
                 r1,
-                title1='File1比File2多以下内容',
+                title1='Data1比Data2多以下内容',
                 elapsed_time=elapsed_time,
                 result2file='off',
                 display='off')
         else:
             result.append('两个文件互相有缺少内容\n')
             result += print_result(
-                r1, title1='File1比File2多以下内容', result2file='off', display='off')
+                r1, title1='Data1比Data2多以下内容', result2file='off', display='off')
             result.append('')
             result += print_result(
                 r2,
-                title1='File2比File1多以下内容',
+                title1='Data2比Data1多以下内容',
                 elapsed_time=elapsed_time,
                 result2file='off',
                 display='off')
@@ -100,21 +100,21 @@ def filechecker():
             elapsed_time = elapsed_time1 + elapsed_time2
         except ValueError:
             result.append(
-                '[Error]File1 contains non-numeric value. Please check and try again!'
+                '[Error]Data1 contains non-numeric value. Please check and try again!'
             )
         else:
             if tmp != []:
                 result.append(
-                    '[Warning]File1 has duplicate values.\nYou can "Check Duplicates(Single File)" to check it.\n'
+                    '[Warning]Duplicate values found in Data1.\nYou can "Check Duplicates (Single Data)" to check it.\n'
                 )
             if r1 == []:
-                result.append('File1 contains consecutive number.\n')
+                result.append('Data1 contains consecutive number.\n')
                 result.append('Duration for process: ' +
                               str(round(elapsed_time, 3)) + ' sec.')
             else:
                 result += print_result(
                     r1,
-                    title1='File1不连续',
+                    title1='Data1不连续',
                     title2='缺少以下元素：',
                     elapsed_time=elapsed_time,
                     result2file='off',
