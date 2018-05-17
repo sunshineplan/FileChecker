@@ -20,12 +20,12 @@ def main():
                 pause()
             else:
                 if r1==[]:
-                    print('file1.txt has no duplicated contents.')
+                    print('file1.txt has no duplicate values.')
                     print('\nDuration for process: '+str(round(elapsed_time,3))+' sec.')
                     pause()
                 else:
-                    print_result(r1,title1='file1.txt has duplicated content(s)',elapsed_time=elapsed_time)
-                    choice=input('Do you want to remove duplicate contents (yes/no)?')
+                    print_result(r1,title1='file1.txt has duplicate values',elapsed_time=elapsed_time)
+                    choice=input('Do you want to remove duplicate values (yes/no)?')
                     while True:
                         if choice.lower()=='yes':
                             remove_duplicates('file1.txt')
@@ -43,11 +43,11 @@ def main():
                 pause()
             else:
                 if r1==[]:
-                    print('Two files have no duplicated contents.')
+                    print('Two files have no duplicate values.')
                     print('\nDuration for process: '+str(round(elapsed_time,3))+' sec.')
                     pause()
                 else:
-                    print_result(r1,title1='Two files have duplicated content(s)',elapsed_time=elapsed_time)
+                    print_result(r1,title1='Two files have duplicate values',elapsed_time=elapsed_time)
                     pause()
         elif choice=='3':
             try:
@@ -85,11 +85,11 @@ def main():
                 print('[Error]file1.txt not found. Please put file1.txt on the Desktop.')
                 pause()
             except ValueError:
-                print('[Error]file1.txt contains non-numeric content. Please check and try again!')
+                print('[Error]file1.txt contains non-numeric value. Please check and try again!')
                 pause()
             else:
                 if tmp!=[]:
-                    print('[Warning]file1.txt has duplicated content(s), you can check duplicates later.')
+                    print('[Warning]file1.txt has duplicate values, you can check duplicates later.')
                 if r1==[]:
                     print('file1.txt contains consecutive number.')
                     print('\nDuration for process: '+str(round(elapsed_time,3))+' sec.')

@@ -42,7 +42,7 @@ def menu():
     print('   *  1. Check Duplicates(Single File)                         *')
     print('   *  2. Check Duplicates(Two Files)                           *')
     print('   *  3. File Compare(Two Files)                               *')
-    print('   *  4. Check Consecutive(Single File)(Numeric Content Only)  *')
+    print('   *  4. Check Consecutive(Single File)(Numeric Value Only)    *')
     print('   *  Q. Quit                                                  *')
     print('   *                                                           *')
     print('   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *')

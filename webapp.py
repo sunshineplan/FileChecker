@@ -29,13 +29,13 @@ def filechecker():
     if type == 'chk_duplicates_1':
         r1, elapsed_time = chk_duplicates(data1, data_type='list')
         if r1 == []:
-            result.append('File1 has no duplicated contents.\n')
+            result.append('File1 has no duplicate values.\n')
             result.append('Duration for process: ' +
                           str(round(elapsed_time, 3)) + ' sec.')
         else:
             result += print_result(
                 r1,
-                title1='File1 has duplicated content(s)',
+                title1='File1 has duplicate values',
                 elapsed_time=elapsed_time,
                 result2file='off',
                 display='off')
@@ -44,13 +44,13 @@ def filechecker():
             return jsonify(result='File2 was empty.\nPlease enter someting...')
         r1, elapsed_time = chk_duplicates(data1, data2, data_type='list')
         if r1 == []:
-            result.append('Two files have no duplicated contents.\n')
+            result.append('Two files have no duplicate values.\n')
             result.append('Duration for process: ' +
                           str(round(elapsed_time, 3)) + ' sec.')
         else:
             result += print_result(
                 r1,
-                title1='Two files have duplicated content(s)',
+                title1='Two files have duplicate values',
                 elapsed_time=elapsed_time,
                 result2file='off',
                 display='off')
@@ -100,12 +100,12 @@ def filechecker():
             elapsed_time = elapsed_time1 + elapsed_time2
         except ValueError:
             result.append(
-                '[Error]File1 contains non-numeric content. Please check and try again!'
+                '[Error]File1 contains non-numeric value. Please check and try again!'
             )
         else:
             if tmp != []:
                 result.append(
-                    '[Warning]File1 has duplicated content(s).\nYou can "Check Duplicates(Single File)" to check it.\n'
+                    '[Warning]File1 has duplicate values.\nYou can "Check Duplicates(Single File)" to check it.\n'
                 )
             if r1 == []:
                 result.append('File1 contains consecutive number.\n')
