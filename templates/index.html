@@ -13,18 +13,18 @@
 
     <script type=text/javascript>
         $(function() {
-            $('#chk_repeat_1').on('click', function() {
+            $('#chk_duplicates_1').on('click', function() {
                 $.post('/check', {
-                    type: 'chk_repeat_1',
+                    type: 'chk_duplicates_1',
                     file1: $('#inputA').val()
                 }, function(data) {
                     $('#output').val(data.result);
                 }, 'json');
                 return false;
             });
-            $('#chk_repeat_2').on('click', function() {
+            $('#chk_duplicates_2').on('click', function() {
                 $.post('/check', {
-                    type: 'chk_repeat_2',
+                    type: 'chk_duplicates_2',
                     file1: $('#inputA').val(),
                     file2: $('#inputB').val()
                 }, function(data) {
@@ -101,8 +101,8 @@
                 <textarea class="form-control" id="inputB" placeholder="Paste contents here..."></textarea>
             </div>
             <div class="col-2 pt-5">
-                <button onclick="javascript:void(0)" id="chk_repeat_1" type="button" class="btn btn-primary btn-block">Check Repeat(Single File)</button>
-                <button onclick="javascript:void(0)" id="chk_repeat_2" type="button" class="btn btn-primary btn-block">Check Repeat(Two Files)</button>
+                <button onclick="javascript:void(0)" id="chk_duplicates_1" type="button" class="btn btn-primary btn-block">Check Duplicates(Single File)</button>
+                <button onclick="javascript:void(0)" id="chk_duplicates_2" type="button" class="btn btn-primary btn-block">Check Duplicates(Two Files)</button>
                 <button onclick="javascript:void(0)" id="compare" type="button" class="btn btn-primary btn-block">File Compare(Two Files)</button>
                 <button onclick="javascript:void(0)" id="chk_consecutive" type="button" class="btn btn-primary btn-block">Check Consecutive(Single File)</button>
                 <br>

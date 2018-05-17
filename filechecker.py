@@ -1,34 +1,34 @@
 #!/usr/bin/python3
 # coding:utf-8
 
-from checkfunction import chk_repeat
+from checkfunction import chk_duplicates
 from checkfunction import chk_consecutive
 from checkfunction import compare
 from iolib import menu
 from iolib import pause
 from iolib import print_result
-from iolib import remove_repeat
+from iolib import remove_duplicates
 
 def main():
     while True:
         choice=menu()
         if choice=='1':
             try:
-                r1,elapsed_time=chk_repeat('file1.txt')
+                r1,elapsed_time=chk_duplicates('file1.txt')
             except FileNotFoundError:
                 print('[Error]file1.txt not found. Please put file1.txt on the Desktop.')
                 pause()
             else:
                 if r1==[]:
-                    print('file1.txt has no repeated contents.')
+                    print('file1.txt has no duplicated contents.')
                     print('\nDuration for process: '+str(round(elapsed_time,3))+' sec.')
                     pause()
                 else:
-                    print_result(r1,title1='file1.txt has repeated content(s)',elapsed_time=elapsed_time)
+                    print_result(r1,title1='file1.txt has duplicated content(s)',elapsed_time=elapsed_time)
                     choice=input('Do you want to remove duplicate contents (yes/no)?')
                     while True:
                         if choice.lower()=='yes':
-                            remove_repeat('file1.txt')
+                            remove_duplicates('file1.txt')
                             break
                         elif choice.lower()=='no':
                             break
@@ -37,17 +37,17 @@ def main():
                     pause()
         elif choice=='2':
             try:
-                r1,elapsed_time=chk_repeat('file1.txt','file2.txt')
+                r1,elapsed_time=chk_duplicates('file1.txt','file2.txt')
             except FileNotFoundError:
                 print('[Error]file1.txt or file2.txt not found. Please put this files on the Desktop.')
                 pause()
             else:
                 if r1==[]:
-                    print('Two files have no repeated contents.')
+                    print('Two files have no duplicated contents.')
                     print('\nDuration for process: '+str(round(elapsed_time,3))+' sec.')
                     pause()
                 else:
-                    print_result(r1,title1='Two files have repeated content(s)',elapsed_time=elapsed_time)
+                    print_result(r1,title1='Two files have duplicated content(s)',elapsed_time=elapsed_time)
                     pause()
         elif choice=='3':
             try:
@@ -79,7 +79,7 @@ def main():
         elif choice=='4':
             try:
                 r1,elapsed_time1=chk_consecutive('file1.txt')
-                tmp,elapsed_time2=chk_repeat('file1.txt',display_warning='off')
+                tmp,elapsed_time2=chk_duplicates('file1.txt',display_warning='off')
                 elapsed_time=elapsed_time1+elapsed_time2
             except FileNotFoundError:
                 print('[Error]file1.txt not found. Please put file1.txt on the Desktop.')
@@ -89,7 +89,7 @@ def main():
                 pause()
             else:
                 if tmp!=[]:
-                    print('[Warning]file1.txt has repeated content(s), you can check repeat later.')
+                    print('[Warning]file1.txt has duplicated content(s), you can check duplicates later.')
                 if r1==[]:
                     print('file1.txt contains consecutive number.')
                     print('\nDuration for process: '+str(round(elapsed_time,3))+' sec.')

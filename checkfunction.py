@@ -7,7 +7,7 @@ from iolib import save_original
 from iolib import precheck
 from time import time
 
-def chk_repeat(file1,file2='',data_type='file',display_warning='on'):
+def chk_duplicates(file1,file2='',data_type='file',display_warning='on'):
     start_time=time()
     if data_type=='file':
         data1=file2list(file1)

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from flask import Flask, render_template, request, jsonify
-from checkfunction import chk_repeat
+from checkfunction import chk_duplicates
 from checkfunction import chk_consecutive
 from checkfunction import compare
 from iolib import print_result
@@ -26,31 +26,31 @@ def filechecker():
     result = []
     if data1 == []:
         return jsonify(result='File1 was empty.\nPlease enter someting...')
-    if type == 'chk_repeat_1':
-        r1, elapsed_time = chk_repeat(data1, data_type='list')
+    if type == 'chk_duplicates_1':
+        r1, elapsed_time = chk_duplicates(data1, data_type='list')
         if r1 == []:
-            result.append('File1 has no repeated contents.\n')
+            result.append('File1 has no duplicated contents.\n')
             result.append('Duration for process: ' +
                           str(round(elapsed_time, 3)) + ' sec.')
         else:
             result += print_result(
                 r1,
-                title1='File1 has repeated content(s)',
+                title1='File1 has duplicated content(s)',
                 elapsed_time=elapsed_time,
                 result2file='off',
                 display='off')
-    elif type == 'chk_repeat_2':
+    elif type == 'chk_duplicates_2':
         if data2 == []:
             return jsonify(result='File2 was empty.\nPlease enter someting...')
-        r1, elapsed_time = chk_repeat(data1, data2, data_type='list')
+        r1, elapsed_time = chk_duplicates(data1, data2, data_type='list')
         if r1 == []:
-            result.append('Two files have no repeated contents.\n')
+            result.append('Two files have no duplicated contents.\n')
             result.append('Duration for process: ' +
                           str(round(elapsed_time, 3)) + ' sec.')
         else:
             result += print_result(
                 r1,
-                title1='Two files have repeated content(s)',
+                title1='Two files have duplicated content(s)',
                 elapsed_time=elapsed_time,
                 result2file='off',
                 display='off')
@@ -95,7 +95,7 @@ def filechecker():
     elif type == 'chk_consecutive':
         try:
             r1, elapsed_time1 = chk_consecutive(data1, data_type='list')
-            tmp, elapsed_time2 = chk_repeat(
+            tmp, elapsed_time2 = chk_duplicates(
                 data1, display_warning='off', data_type='list')
             elapsed_time = elapsed_time1 + elapsed_time2
         except ValueError:
@@ -105,7 +105,7 @@ def filechecker():
         else:
             if tmp != []:
                 result.append(
-                    '[Warning]File1 has repeated content(s).\nYou can "Check Repeat(Single File)" to check it.\n'
+                    '[Warning]File1 has duplicated content(s).\nYou can "Check Duplicates(Single File)" to check it.\n'
                 )
             if r1 == []:
                 result.append('File1 contains consecutive number.\n')

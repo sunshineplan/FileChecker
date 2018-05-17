@@ -39,8 +39,8 @@ def menu():
     print('   *                                                           *')
     print('   *  Welcome to use File Checker!                             *')
     print('   *                                                           *')
-    print('   *  1. Check Repeat(Single File)                             *')
-    print('   *  2. Check Repeat(Two Files)                               *')
+    print('   *  1. Check Duplicates(Single File)                         *')
+    print('   *  2. Check Duplicates(Two Files)                           *')
     print('   *  3. File Compare(Two Files)                               *')
     print('   *  4. Check Consecutive(Single File)(Numeric Content Only)  *')
     print('   *  Q. Quit                                                  *')
@@ -79,9 +79,9 @@ def save_original(filename,list_data,mode='change'):    #如内容有变，将�
             print(filename+'删除重复内容后，新文件保存为'+filename[:i]+'_new'+filename[i:])
     return 0
 
-def remove_repeat(filename):
+def remove_duplicates(filename):
     data=sort_data(list(set(file2list(filename))))
-    save_original(filename,data,mode='remove_repeat')
+    save_original(filename,data,mode='remove_duplicates')
     return 0
 
 def print_result(result,title1='',title2='result:',ext='',elapsed_time=-1,result2file='on',display='on'):
