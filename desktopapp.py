@@ -118,7 +118,7 @@ def main():
                 if tmp!=[]:
                     print('[Warning]Duplicate values found in file1.txt, you can check duplicates later.\n')
                 if r1==[]:
-                    print('file1.txt contains consecutive number.\n')
+                    print('file1.txt contains consecutive natural numbers.\n')
                     print('Duration for process: '+str(round(elapsed_time,3))+' sec.')
                     pause()
                 else:

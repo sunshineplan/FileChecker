@@ -104,7 +104,7 @@ def filechecker():
                     '[Warning]Duplicate values found in Data1.\nYou can "Check Duplicates (Data1)" to check it.\n'
                 )
             if r1 == []:
-                result.append('Data1 contains consecutive number.\n')
+                result.append('Data1 contains consecutive natural numbers.\n')
                 result.append('Duration for process: ' +
                               str(round(elapsed_time, 3)) + ' sec.')
             else:
