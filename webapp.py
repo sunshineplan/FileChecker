@@ -19,10 +19,8 @@ def index():
 @app.route('/check', methods=['POST'])
 def filechecker():
     type = request.form.get('type')
-    data1 = request.form.get('data1')
-    data2 = request.form.get('data2')
-    data1 = precheck(str(data1).split('\n'))
-    data2 = precheck(str(data2).split('\n'))
+    data1 = precheck(str(request.form.get('data1')).split('\n'))
+    data2 = precheck(str(request.form.get('data2')).split('\n'))
     result = []
     if data1 == []:
         return jsonify(result='Data1 is empty.\nPlease enter someting...')
