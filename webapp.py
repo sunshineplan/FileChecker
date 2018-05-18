@@ -16,8 +16,8 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/check', methods=['POST'])
-def filechecker():
+@app.route('/analysis', methods=['POST'])
+def sda():
     type = request.form.get('type')
     data1 = precheck(str(request.form.get('data1')).split('\n'))
     data2 = precheck(str(request.form.get('data2')).split('\n'))

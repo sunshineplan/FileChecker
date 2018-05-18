@@ -3,18 +3,18 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="description" content="File Checker">
+    <meta name="description" content="Simple Data Analytics">
     <meta name="keywords" content="HTML,CSS,Python,JavaScript,jQuery,Bootstrap,Flask,JSON">
     <meta name="author" content="Sunshine">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>File Checker</title>
+    <title>Simple Data Analytics</title>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
 
     <script type=text/javascript>
         $(function() {
             $('#chk_duplicates').on('click', function() {
-                $.post('/check', {
+                $.post('/analysis', {
                     type: 'chk_duplicates',
                     data1: $('#inputA').val()
                 }, function(data) {
@@ -23,7 +23,7 @@
                 return false;
             });
             $('#chk_comm').on('click', function() {
-                $.post('/check', {
+                $.post('/analysis', {
                     type: 'chk_comm',
                     data1: $('#inputA').val(),
                     data2: $('#inputB').val()
@@ -33,7 +33,7 @@
                 return false;
             });
             $('#chk_diff').on('click', function() {
-                $.post('/check', {
+                $.post('/analysis', {
                     type: 'chk_diff',
                     data1: $('#inputA').val(),
                     data2: $('#inputB').val()
@@ -43,7 +43,7 @@
                 return false;
             });
             $('#chk_consecutive').on('click', function() {
-                $.post('/check', {
+                $.post('/analysis', {
                     type: 'chk_consecutive',
                     data1: $('#inputA').val()
                 }, function(data) {
@@ -88,7 +88,7 @@
 
 <body>
     <header class="navbar navbar-expand navbar-light flex-column flex-md-row">
-        <a class="navbar-brand text-primary m-0 mr-md-3" href="/" style="font-size:24px;">File Checker</a>
+        <a class="navbar-brand text-primary m-0 mr-md-3" href="/" style="font-size:24px;">Simple Data Analytics</a>
     </header>
     <div class="container-fluid">
         <div class="row">

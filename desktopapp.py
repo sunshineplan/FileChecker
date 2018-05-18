@@ -13,7 +13,7 @@ from getpass import getpass
 def menu():
     print('   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *')
     print('   *                                                           *')
-    print('   *  Welcome to use File Checker!                             *')
+    print('   *  Welcome to use Simple Data Analytics!                    *')
     print('   *                                                           *')
     print('   *  1. Check Duplicates (File1)                              *')
     print('   *  2. Cross Compare (Common)                                *')
