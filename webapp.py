@@ -42,7 +42,7 @@ def filechecker():
     elif type == 'chk_comm':
         if data2 == []:
             return jsonify(result='Data2 is empty.\nPlease enter someting...')
-        r1, elapsed_time = chk_duplicates(data1, data2, data_type='list')
+        r1, elapsed_time = compare(data1, data2, mode='comm', data_type='list')
         if r1 == []:
             result.append('Two data contain no common values.\n')
             result.append('Duration for process: ' +

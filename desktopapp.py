@@ -64,7 +64,7 @@ def main():
                     pause()
         elif choice=='2':
             try:
-                r1,elapsed_time=chk_duplicates('file1.txt','file2.txt')
+                r1,elapsed_time=compare('file1.txt','file2.txt',mode='comm')
             except FileNotFoundError:
                 print('[Error]file1.txt or file2.txt not found. Please put this files on the Desktop.')
                 pause()

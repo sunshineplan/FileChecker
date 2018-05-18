@@ -7,40 +7,29 @@ from lib.io import file2list
 from lib.io import save_original
 from time import time
 
-def chk_duplicates(data1,data2='',data_type='file',display_warning='on'):
+def chk_duplicates(data1,data_type='file',display_warning='on'):
     start_time=time()
+    result=[]
+    tmp=''
     if data_type=='file':
         list1=file2list(data1)
         if display_warning=='on':
             save_original(data1,list1)
-        if data2!='':
-            list2=file2list(data2)
-            if display_warning=='on':
-                save_original(data2,list2)
     else:
         list1=precheck(data1)
-        if data2!='':
-            list2=precheck(data2)
-    result=[]
-    if data2=='':
-        tmp=''
-        for i in list1:
-            if i==tmp:
-                continue
-            if list1.count(i)!=1:
-                result.append(str(i)+'\t出现了'+str(list1.count(i))+'次')
-            tmp=i
-    else:
-        list2=list(set(list2))
-        for i in list2:
-            if list1.count(i)!=0:
-                result.append(i)
+    for i in list1:
+        if i==tmp:
+            continue
+        if list1.count(i)!=1:
+            result.append(str(i)+'\t出现了'+str(list1.count(i))+'次')
+        tmp=i
     result=sort_data(result)
     elapsed_time=time()-start_time
     return result,elapsed_time
 
-def compare(data1,data2,data_type='file',display_warning='on'):
+def compare(data1,data2,data_type='file',mode='diff',display_warning='on'):
     start_time=time()
+    result=[]
     if data_type=='file':
         if display_warning=='on':
             list1=file2list(data1)
@@ -53,10 +42,17 @@ def compare(data1,data2,data_type='file',display_warning='on'):
     else:
         list1=data1
         list2=data2
-    result=list1.copy()
-    for i in list2:
-        if i in result:
-            result.remove(i)
+    if mode=='diff':
+        result=list1.copy()
+        for i in list2:
+            if i in result:
+                result.remove(i)
+    else:
+        list2=list(set(list2))
+        for i in list2:
+            if list1.count(i)!=0:
+                result.append(i)
+    result=sort_data(result)
     elapsed_time=time()-start_time
     return result,elapsed_time
 
