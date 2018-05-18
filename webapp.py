@@ -26,7 +26,7 @@ def filechecker():
     result = []
     if data1 == []:
         return jsonify(result='Data1 is empty.\nPlease enter someting...')
-    if type == 'chk_duplicates_1':
+    if type == 'chk_duplicates':
         r1, elapsed_time = chk_duplicates(data1, data_type='list')
         if r1 == []:
             result.append('Data1 contains no duplicate values.\n')
@@ -39,22 +39,22 @@ def filechecker():
                 elapsed_time=elapsed_time,
                 result2file='off',
                 display='off')
-    elif type == 'chk_duplicates_2':
+    elif type == 'chk_comm':
         if data2 == []:
             return jsonify(result='Data2 is empty.\nPlease enter someting...')
         r1, elapsed_time = chk_duplicates(data1, data2, data_type='list')
         if r1 == []:
-            result.append('Two data contain no duplicate values.\n')
+            result.append('Two data contain no common values.\n')
             result.append('Duration for process: ' +
                           str(round(elapsed_time, 3)) + ' sec.')
         else:
             result += print_result(
                 r1,
-                title1='Duplicate values found between two data',
+                title1='Common values found between two data',
                 elapsed_time=elapsed_time,
                 result2file='off',
                 display='off')
-    elif type == 'compare':
+    elif type == 'chk_diff':
         if data2 == []:
             return jsonify(result='Data2 is empty.\nPlease enter someting...')
         r1, elapsed_time1 = compare(data1, data2, data_type='list')
@@ -82,7 +82,7 @@ def filechecker():
                 result2file='off',
                 display='off')
         else:
-            result.append('两个文件互相有缺少内容\n')
+            result.append('两个数据有互相不一致内容\n')
             result += print_result(
                 r1, title1='Data1比Data2多以下内容', result2file='off', display='off')
             result.append('')
@@ -105,7 +105,7 @@ def filechecker():
         else:
             if tmp != []:
                 result.append(
-                    '[Warning]Duplicate values found in Data1.\nYou can "Check Duplicates (Single Data)" to check it.\n'
+                    '[Warning]Duplicate values found in Data1.\nYou can "Check Duplicates (Data1)" to check it.\n'
                 )
             if r1 == []:
                 result.append('Data1 contains consecutive number.\n')

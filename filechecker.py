@@ -20,11 +20,11 @@ def main():
                 pause()
             else:
                 if r1==[]:
-                    print('file1.txt has no duplicate values.')
-                    print('\nDuration for process: '+str(round(elapsed_time,3))+' sec.')
+                    print('file1.txt contains no duplicate values.\n')
+                    print('Duration for process: '+str(round(elapsed_time,3))+' sec.')
                     pause()
                 else:
-                    print_result(r1,title1='file1.txt has duplicate values',elapsed_time=elapsed_time)
+                    print_result(r1,title1='Duplicate values found in file1.txt',elapsed_time=elapsed_time)
                     choice=input('Do you want to remove duplicate values (yes/no)?')
                     while True:
                         if choice.lower()=='yes':
@@ -43,11 +43,11 @@ def main():
                 pause()
             else:
                 if r1==[]:
-                    print('Two files have no duplicate values.')
-                    print('\nDuration for process: '+str(round(elapsed_time,3))+' sec.')
+                    print('Two files contain no common values.\n')
+                    print('Duration for process: '+str(round(elapsed_time,3))+' sec.')
                     pause()
                 else:
-                    print_result(r1,title1='Two files have duplicate values',elapsed_time=elapsed_time)
+                    print_result(r1,title1='Common values found between two files',elapsed_time=elapsed_time)
                     pause()
         elif choice=='3':
             try:
@@ -71,7 +71,7 @@ def main():
                     print_result(r1,title1='file1.txt比file2.txt多以下内容',elapsed_time=elapsed_time)
                     pause()
                 else:
-                    print('两个文件互相有缺少内容\n')
+                    print('两个文件有互相不一致内容\n')
                     print_result(r1,title1='file1.txt比file2.txt多以下内容',ext='1')
                     print()
                     print_result(r2,title1='file2.txt比file1.txt多以下内容',ext='2',elapsed_time=elapsed_time)
@@ -89,7 +89,7 @@ def main():
                 pause()
             else:
                 if tmp!=[]:
-                    print('[Warning]file1.txt has duplicate values, you can check duplicates later.')
+                    print('[Warning]Duplicate values found in file1.txt, you can check duplicates later.')
                 if r1==[]:
                     print('file1.txt contains consecutive number.')
                     print('\nDuration for process: '+str(round(elapsed_time,3))+' sec.')
