@@ -116,10 +116,10 @@ def main():
                 pause()
             else:
                 if tmp!=[]:
-                    print('[Warning]Duplicate values found in file1.txt, you can check duplicates later.')
+                    print('[Warning]Duplicate values found in file1.txt, you can check duplicates later.\n')
                 if r1==[]:
-                    print('file1.txt contains consecutive number.')
-                    print('\nDuration for process: '+str(round(elapsed_time,3))+' sec.')
+                    print('file1.txt contains consecutive number.\n')
+                    print('Duration for process: '+str(round(elapsed_time,3))+' sec.')
                     pause()
                 else:
                     print_result(r1,title1='file1.txt不连续',title2='缺少以下元素：',elapsed_time=elapsed_time)
