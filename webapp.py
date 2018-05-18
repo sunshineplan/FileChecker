@@ -2,11 +2,11 @@
 # -*- coding: utf-8 -*-
 
 from flask import Flask, render_template, request, jsonify
-from checkfunction import chk_duplicates
-from checkfunction import chk_consecutive
-from checkfunction import compare
-from iolib import print_result
-from iolib import precheck
+from lib.fn import chk_duplicates
+from lib.fn import compare
+from lib.fn import chk_consecutive
+from lib.comm import print_result
+from lib.comm import precheck
 
 app = Flask(__name__)
 

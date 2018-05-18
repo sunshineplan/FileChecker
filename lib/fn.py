@@ -1,10 +1,10 @@
 ﻿#!/usr/bin/python3
 # coding:utf-8
 
-from iolib import file2list
-from iolib import sort_data
-from iolib import save_original
-from iolib import precheck
+from lib.comm import precheck
+from lib.comm import sort_data
+from lib.io import file2list
+from lib.io import save_original
 from time import time
 
 def chk_duplicates(data1,data2='',data_type='file',display_warning='on'):
