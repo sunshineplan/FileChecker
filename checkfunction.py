@@ -77,7 +77,3 @@ def chk_consecutive(data,data_type='file'):
         save_original(data,str_list)
     elapsed_time=time()-start_time
     return result,elapsed_time
-    
-    
-    
-    
