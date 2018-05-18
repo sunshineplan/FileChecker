@@ -35,7 +35,7 @@ def filechecker():
         else:
             result += print_result(
                 r1,
-                title1='Duplicate values found in Data1',
+                title1='Duplicate values found in Data1.',
                 elapsed_time=elapsed_time,
                 result2file='off',
                 display='off')
@@ -50,7 +50,7 @@ def filechecker():
         else:
             result += print_result(
                 r1,
-                title1='Common values found between two data',
+                title1='Common values found between two data.',
                 elapsed_time=elapsed_time,
                 result2file='off',
                 display='off')
@@ -81,7 +81,7 @@ def filechecker():
                 result2file='off',
                 display='off')
         else:
-            result.append('两个数据有互相不一致内容\n')
+            result.append('两个数据有互相不一致内容。\n')
             result += print_result(
                 r1, title1='Data1比Data2多以下内容', result2file='off', display='off')
             result.append('')
