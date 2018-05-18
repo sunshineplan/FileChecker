@@ -58,8 +58,7 @@ def filechecker():
         if data2 == []:
             return jsonify(result='Data2 is empty.\nPlease enter someting...')
         r1, elapsed_time1 = compare(data1, data2, data_type='list')
-        r2, elapsed_time2 = compare(
-            data2, data1, display_warning='off', data_type='list')
+        r2, elapsed_time2 = compare(data2, data1, data_type='list')
         elapsed_time = elapsed_time1 + elapsed_time2
         if r1 + r2 == []:
             result.append('Data1 is same as Data2.\n')
@@ -95,8 +94,7 @@ def filechecker():
     elif type == 'chk_consecutive':
         try:
             r1, elapsed_time1 = chk_consecutive(data1, data_type='list')
-            tmp, elapsed_time2 = chk_duplicates(
-                data1, display_warning='off', data_type='list')
+            tmp, elapsed_time2 = chk_duplicates(data1, data_type='list')
             elapsed_time = elapsed_time1 + elapsed_time2
         except ValueError:
             result.append(
