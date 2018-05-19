@@ -7,22 +7,22 @@ from lib.io import file2list
 from lib.io import save_original
 from time import time
 
-def chk_duplicates(data1,data_type='file',display_warning='on'):
+def chk_duplicates(data,data_type='file',display_warning='on'):
     start_time=time()
     result=[]
     tmp=''
     if data_type=='file':
-        list1=file2list(data1)
+        list=file2list(data)
         if display_warning=='on':
-            save_original(data1,list1)
+            save_original(data,list)
     else:
-        list1=precheck(data1)
+        list=precheck(data)
     for i in list.copy():
         if i==tmp:
             list.remove(i)
             continue
-        if list1.count(i)!=1:
-            result.append(str(i)+'\t出现了'+str(list1.count(i))+'次')
+        if list.count(i)!=1:
+            result.append(str(i)+'\t出现了'+str(list.count(i))+'次')
         tmp=i
         list.remove(i)
     result=sort_data(result)
