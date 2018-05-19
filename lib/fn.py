@@ -17,12 +17,14 @@ def chk_duplicates(data1,data_type='file',display_warning='on'):
             save_original(data1,list1)
     else:
         list1=precheck(data1)
-    for i in list1:
+    for i in list.copy():
         if i==tmp:
+            list.remove(i)
             continue
         if list1.count(i)!=1:
             result.append(str(i)+'\t出现了'+str(list1.count(i))+'次')
         tmp=i
+        list.remove(i)
     result=sort_data(result)
     elapsed_time=time()-start_time
     return result,elapsed_time
