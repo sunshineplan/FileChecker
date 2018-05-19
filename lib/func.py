@@ -3,8 +3,8 @@
 
 from lib.comm import precheck
 from lib.comm import sort_data
-from lib.io import file2list
-from lib.io import save_original
+from lib.fileIO import file2list
+from lib.fileIO import save_original
 from time import time
 
 def chk_duplicates(data,data_type='file',display_warning='on'):

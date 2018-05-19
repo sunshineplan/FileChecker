@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 # coding:utf-8
 
-from lib.fn import chk_duplicates
-from lib.fn import compare
-from lib.fn import chk_consecutive
-from lib.comm import print_result
-from lib.io import remove_duplicates
+from lib.func import chk_duplicates
+from lib.func import compare
+from lib.func import chk_consecutive
+from lib.fileIO import remove_duplicates
+from lib.output import print_result
 from os import system
 from os import name
 from getpass import getpass
