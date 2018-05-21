@@ -22,7 +22,7 @@ def chk_duplicates(data,data_type='file',display_warning='on'):
             list.remove(i)
             continue
         if list.count(i)!=1:
-            result.append(str(i)+'\t出现了'+str(list.count(i))+'次')
+            result.append(str(i)+'\t\t出现了'+str(list.count(i))+'次')
         tmp=i
         list.remove(i)
     result=sort_data(result)
