@@ -18,7 +18,9 @@
                     type: 'chk_duplicates',
                     data1: $('#inputA').val()
                 }, function(data) {
-                    $('#output').val(data.result);
+                    setTimeout(function() {
+                        $('#output').val(data.result);
+                    }, 800);
                 }, 'json');
                 return false;
             });
@@ -28,7 +30,9 @@
                     data1: $('#inputA').val(),
                     data2: $('#inputB').val()
                 }, function(data) {
-                    $('#output').val(data.result);
+                    setTimeout(function() {
+                        $('#output').val(data.result);
+                    }, 800);
                 }, 'json');
                 return false;
             });
@@ -38,7 +42,9 @@
                     data1: $('#inputA').val(),
                     data2: $('#inputB').val()
                 }, function(data) {
-                    $('#output').val(data.result);
+                    setTimeout(function() {
+                        $('#output').val(data.result);
+                    }, 800);
                 }, 'json');
                 return false;
             });
@@ -47,30 +53,50 @@
                     type: 'chk_consecutive',
                     data1: $('#inputA').val()
                 }, function(data) {
-                    $('#output').val(data.result);
+                    setTimeout(function() {
+                        $('#output').val(data.result);
+                    }, 800);
                 }, 'json');
                 return false;
             });
-            $(document).on("ajaxSend", function(){
-                $('#output').val('Processing...');
+            $(document).on("ajaxSend", function() {
+                processing();
+                process = setInterval(function() {
+                    processing();
+                }, 1000);
                 return false;
-            });   
+            }).on("ajaxComplete", function() {
+                clearInterval(process);
+                return false;
+            });
         });
 
         function copyResult() {
-            var result = document.getElementById('output');
+            result = document.getElementById('output');
             result.select();
             document.execCommand('Copy');
-            result.setSelectionRange(0,0);
+            result.setSelectionRange(0, 0);
             if (result.value !== '') {
                 alert('Text copied.');
-            };
+            }
         }
 
         function clearAll() {
             $('#inputA').val('');
             $('#inputB').val('');
             $('#output').val('');
+        }
+
+        function processing() {
+            setTimeout(function() {
+                $('#output').val('Processing.');
+            }, 250);
+            setTimeout(function() {
+                $('#output').val('Processing..');
+            }, 500);
+            setTimeout(function() {
+                $('#output').val('Processing...');
+            }, 750);
         }
     </script>
     <style type="text/css">
