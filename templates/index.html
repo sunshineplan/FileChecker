@@ -13,7 +13,7 @@
 
     <script type=text/javascript>
         $(function() {
-            $('#chk_duplicates').on('click', function() {
+            $('#chk_duplicates').click(function() {
                 $.post('/analysis', {
                     type: 'chk_duplicates',
                     data1: $('#inputA').val()
@@ -24,7 +24,7 @@
                 }, 'json');
                 return false;
             });
-            $('#chk_comm').on('click', function() {
+            $('#chk_comm').click(function() {
                 $.post('/analysis', {
                     type: 'chk_comm',
                     data1: $('#inputA').val(),
@@ -36,7 +36,7 @@
                 }, 'json');
                 return false;
             });
-            $('#chk_diff').on('click', function() {
+            $('#chk_diff').click(function() {
                 $.post('/analysis', {
                     type: 'chk_diff',
                     data1: $('#inputA').val(),
@@ -48,7 +48,7 @@
                 }, 'json');
                 return false;
             });
-            $('#chk_consecutive').on('click', function() {
+            $('#chk_consecutive').click(function() {
                 $.post('/analysis', {
                     type: 'chk_consecutive',
                     data1: $('#inputA').val()
@@ -59,13 +59,13 @@
                 }, 'json');
                 return false;
             });
-            $(document).on("ajaxSend", function() {
+            $(document).ajaxSend(function() {
                 processing();
                 process = setInterval(function() {
                     processing();
                 }, 1000);
                 return false;
-            }).on("ajaxComplete", function() {
+            }).ajaxComplete(function() {
                 clearInterval(process);
                 return false;
             });
