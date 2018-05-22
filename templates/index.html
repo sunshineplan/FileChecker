@@ -86,6 +86,13 @@
             $('#inputB').val('');
             $('#output').val('');
         }
+        
+        function swap() {
+            data1 = $('#inputA').val();
+            data2 = $('#inputB').val();
+            $('#inputA').val(data2);
+            $('#inputB').val(data1);
+        }
 
         function processing() {
             $('#output').val('Processing');
@@ -135,6 +142,9 @@
                 <br>
                 <br>
                 <button onclick="copyResult()" type="button" class="btn btn-primary btn-block">Copy Result (to Clipboard)</button>
+                <br>
+                <br>
+                <button onclick="swap()" type="button" class="btn btn-primary btn-block">Data1<=>Data2</button>
                 <br>
                 <br>
                 <button onclick="clearAll()" type="button" class="btn btn-primary btn-block">Clear</button>
