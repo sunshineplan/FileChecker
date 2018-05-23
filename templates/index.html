@@ -68,6 +68,11 @@
             }).ajaxComplete(function() {
                 clearInterval(process);
                 return false;
+            }).ajaxError(function() {
+                setTimeout(function() {
+                    $('#output').val('Oops, we encountered a problem! Please contact your administrator for assistance.');
+                }, 800);
+                return false;
             });
         });
 
