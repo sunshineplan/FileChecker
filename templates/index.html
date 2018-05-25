@@ -111,6 +111,18 @@
                 $('#output').val('Processing...');
             }, 750);
         }
+
+        window.onload = function() {
+            data1 = localStorage.getItem('data1');
+            if (data1 !== null) $('#inputA').val(data1);
+            data2 = localStorage.getItem('data2');
+            if (data2 !== null) $('#inputB').val(data2);
+        }
+
+        window.onbeforeunload = function() {
+            localStorage.setItem('data1', $('#inputA').val());
+            localStorage.setItem('data2', $('#inputB').val());
+        }
     </script>
     <style type="text/css">
         textarea {
