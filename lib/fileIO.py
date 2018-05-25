@@ -3,9 +3,13 @@
 
 from lib.comm import precheck
 from os import getenv
+from os import name
 
 def file2list(filename,check='on',display_warning='on'):
-    path=getenv('userprofile')+'\\Desktop\\'
+    if name=='nt':
+        path=getenv('userprofile')+'\\Desktop\\'
+    else:
+        path=getenv('HOME')+'/'
     file=open(path+filename,encoding='utf-8')
     data=file.readlines()
     file.close()
@@ -19,7 +23,10 @@ def file2list(filename,check='on',display_warning='on'):
     return output
 
 def list2file(list_data,filename):
-    path=getenv('userprofile')+'\\Desktop\\'
+    if name=='nt':
+        path=getenv('userprofile')+'\\Desktop\\'
+    else:
+        path=getenv('HOME')+'/'
     file=open(path+filename,'w',encoding='utf-8')
     for i in list_data:
         file.write(str(i)+'\n')

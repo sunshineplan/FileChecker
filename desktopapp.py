@@ -43,7 +43,7 @@ def main():
             try:
                 r1,elapsed_time=chk_duplicates('file1.txt')
             except FileNotFoundError:
-                print('[Error]file1.txt not found. Please put file1.txt on the Desktop.')
+                print('[Error]file1.txt not found. Please put file1.txt on your Desktop(Windows) or Home directory(Linux).')
                 pause()
             else:
                 if r1==[]:
@@ -66,7 +66,7 @@ def main():
             try:
                 r1,elapsed_time=compare('file1.txt','file2.txt',mode='comm')
             except FileNotFoundError:
-                print('[Error]file1.txt or file2.txt not found. Please put this files on the Desktop.')
+                print('[Error]file1.txt or file2.txt not found. Please put this files on your Desktop(Windows) or Home directory(Linux).')
                 pause()
             else:
                 if r1==[]:
@@ -82,7 +82,7 @@ def main():
                 r2,elapsed_time2=compare('file2.txt','file1.txt',display_warning='off')
                 elapsed_time=elapsed_time1+elapsed_time2
             except FileNotFoundError:
-                print('[Error]file1.txt or file2.txt not found. Please put this files on the Desktop.')
+                print('[Error]file1.txt or file2.txt not found. Please put this files on your Desktop(Windows) or Home directory(Linux).')
                 pause()
             else:
                 if r1+r2==[]:
