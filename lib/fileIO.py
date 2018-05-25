@@ -2,6 +2,7 @@
 # coding:utf-8
 
 from lib.comm import precheck
+from lib.comm import sort_data
 from os import getenv
 from os import name
 
