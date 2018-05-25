@@ -8,7 +8,6 @@ from lib.fileIO import remove_duplicates
 from lib.output import print_result
 from os import system
 from os import name
-from getpass import getpass
 
 def menu():
     print('   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *')
@@ -30,9 +29,10 @@ def menu():
 def pause(mode='normal'):
     print()
     if mode=='normal':
-        getpass(prompt='Press Enter to continue...')
+        prompt='Press any key to continue...'
     else:
-        getpass(prompt='Wrong choice! Please choose again!')
+        prompt='Wrong choice! Press any key to choose again!'
+    system('echo '+prompt+'&pause>nul' if name=='nt' else '/bin/bash -c "read -n1 -sp \''+prompt+'\'"')
     system('cls' if name=='nt' else 'clear')
     return 0
 
