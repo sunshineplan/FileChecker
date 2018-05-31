@@ -12,7 +12,7 @@ from os import name
 def menu():
     print('   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *')
     print('   *                                                           *')
-    print('   *  Welcome to use Simple Data Analytics!                    *')
+    print('   *  Welcome to use Simple Data Analysis!                     *')
     print('   *                                                           *')
     print('   *  1. Check Duplicates (File1)                              *')
     print('   *  2. Cross Compare (Common)                                *')
