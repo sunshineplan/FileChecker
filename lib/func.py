@@ -84,4 +84,4 @@ def remove_duplicates(data,data_type='file'):
     list_data=sort_data(list(set(list_data)))
     if data_type=='file':
         save_original(data,list_data,mode='remove_duplicates')
-    return 0
+    return list_data
