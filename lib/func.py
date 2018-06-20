@@ -75,3 +75,13 @@ def chk_consecutive(data,data_type='file'):
         save_original(data,str_list)
     elapsed_time=time()-start_time
     return result,elapsed_time
+
+def remove_duplicates(data,data_type='file'):
+    if data_type=='file':
+        list_data=file2list(data)
+    else:
+        list_data=data
+    list_data=sort_data(list(set(list_data)))
+    if data_type=='file':
+        save_original(data,list_data,mode='remove_duplicates')
+    return 0
