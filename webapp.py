@@ -3,6 +3,7 @@
 
 from flask import Flask, render_template, request, jsonify
 from lib.func import chk_duplicates
+from lib.func import remove_duplicates
 from lib.func import compare
 from lib.func import chk_consecutive
 from lib.comm import precheck
@@ -42,6 +43,11 @@ def sda():
                 elapsed_time=elapsed_time,
                 result2file='off',
                 display='off')
+    elif type == 'rm_duplicates':
+        if source == 'Data1' and data1 != []:
+            result = remove_duplicates(data1, data_type='list')
+        elif source == 'Data2' and data2 != []:
+            result = remove_duplicates(data2, data_type='list')
     elif type == 'chk_comm':
         r1, elapsed_time = compare(data1, data2, mode='comm', data_type='list')
         if r1 == []:

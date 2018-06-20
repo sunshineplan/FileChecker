@@ -25,6 +25,30 @@
                 }, 'json');
                 return false;
             });
+            $('#rm_duplicates1').click(function() {
+                $.post('analysis', {
+                    type: 'rm_duplicates',
+                    source: 'Data1',
+                    data1: $('#inputA').val()
+                }, function(data) {
+                    setTimeout(function() {
+                        $('#output').val(data.result);
+                    }, 800);
+                }, 'json');
+                return false;
+            });
+            $('#rm_duplicates2').click(function() {
+                $.post('analysis', {
+                    type: 'rm_duplicates',
+                    source: 'Data2',
+                    data2: $('#inputB').val()
+                }, function(data) {
+                    setTimeout(function() {
+                        $('#output').val(data.result);
+                    }, 800);
+                }, 'json');
+                return false;
+            });
             $('#chk_comm').click(function() {
                 $.post('analysis', {
                     type: 'chk_comm',
@@ -157,6 +181,8 @@
             </div>
             <div class="col-3 col-xl-2 p-0 pt-5">
                 <button onclick="javascript:void(0)" id="chk_duplicates" type="button" class="btn btn-primary btn-block">Check Duplicates (Data1)</button>
+				<button onclick="javascript:void(0)" id="rm_duplicates1" type="button" class="btn btn-primary btn-block">Remove Duplicates (Data1)</button>
+				<button onclick="javascript:void(0)" id="rm_duplicates2" type="button" class="btn btn-primary btn-block">Remove Duplicates (Data2)</button>
                 <button onclick="javascript:void(0)" id="chk_comm" type="button" class="btn btn-primary btn-block">Cross Compare (Common)</button>
                 <button onclick="javascript:void(0)" id="chk_diff" type="button" class="btn btn-primary btn-block">Cross Compare (Difference)</button>
                 <button onclick="javascript:void(0)" id="chk_consecutive" type="button" class="btn btn-primary btn-block">Check Consecutive (Data1)</button>
