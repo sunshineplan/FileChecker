@@ -16,6 +16,7 @@
             $('#chk_duplicates').click(function() {
                 $.post('analysis', {
                     type: 'chk_duplicates',
+                    source: 'Data1',
                     data1: $('#inputA').val()
                 }, function(data) {
                     setTimeout(function() {
@@ -27,6 +28,7 @@
             $('#chk_comm').click(function() {
                 $.post('analysis', {
                     type: 'chk_comm',
+                    source: 'Data1,Data2',
                     data1: $('#inputA').val(),
                     data2: $('#inputB').val()
                 }, function(data) {
@@ -39,6 +41,7 @@
             $('#chk_diff').click(function() {
                 $.post('analysis', {
                     type: 'chk_diff',
+                    source: 'Data1,Data2',
                     data1: $('#inputA').val(),
                     data2: $('#inputB').val()
                 }, function(data) {
@@ -51,6 +54,7 @@
             $('#chk_consecutive').click(function() {
                 $.post('analysis', {
                     type: 'chk_consecutive',
+                    source: 'Data1',
                     data1: $('#inputA').val()
                 }, function(data) {
                     setTimeout(function() {

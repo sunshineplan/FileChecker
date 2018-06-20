@@ -19,11 +19,16 @@ def index():
 @app.route('/analysis', methods=['POST'])
 def sda():
     type = request.form.get('type')
+    source = request.form.get('source')
     data1 = precheck(str(request.form.get('data1')).split('\n'))
     data2 = precheck(str(request.form.get('data2')).split('\n'))
     result = []
     if data1 == []:
-        return jsonify(result='Data1 is empty.\nPlease enter someting...')
+        if source == 'Data1' or source == 'Data1,Data2':
+            return jsonify(result='Data1 is empty.\nPlease enter someting...')
+    elif data2 == []:
+        if source == 'Data2' or source == 'Data1,Data2':
+            return jsonify(result='Data2 is empty.\nPlease enter someting...')
     if type == 'chk_duplicates':
         r1, elapsed_time = chk_duplicates(data1, data_type='list')
         if r1 == []:
@@ -38,8 +43,6 @@ def sda():
                 result2file='off',
                 display='off')
     elif type == 'chk_comm':
-        if data2 == []:
-            return jsonify(result='Data2 is empty.\nPlease enter someting...')
         r1, elapsed_time = compare(data1, data2, mode='comm', data_type='list')
         if r1 == []:
             result.append('Two data contain no common values.\n')
@@ -53,8 +56,6 @@ def sda():
                 result2file='off',
                 display='off')
     elif type == 'chk_diff':
-        if data2 == []:
-            return jsonify(result='Data2 is empty.\nPlease enter someting...')
         r1, elapsed_time1 = compare(data1, data2, data_type='list')
         r2, elapsed_time2 = compare(data2, data1, data_type='list')
         elapsed_time = elapsed_time1 + elapsed_time2
