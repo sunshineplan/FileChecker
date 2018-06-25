@@ -13,11 +13,23 @@
 
     <script type=text/javascript>
         $(function() {
-            $('#chk_duplicates').click(function() {
+            $('#chk_duplicates1').click(function() {
                 $.post('analysis', {
                     type: 'chk_duplicates',
                     source: 'Data1',
-                    data1: $('#inputA').val()
+                    data: $('#inputA').val()
+                }, function(data) {
+                    setTimeout(function() {
+                        $('#output').val(data.result);
+                    }, 800);
+                }, 'json');
+                return false;
+            });
+            $('#chk_duplicates2').click(function() {
+                $.post('analysis', {
+                    type: 'chk_duplicates',
+                    source: 'Data2',
+                    data: $('#inputB').val()
                 }, function(data) {
                     setTimeout(function() {
                         $('#output').val(data.result);
@@ -29,7 +41,7 @@
                 $.post('analysis', {
                     type: 'rm_duplicates',
                     source: 'Data1',
-                    data1: $('#inputA').val()
+                    data: $('#inputA').val()
                 }, function(data) {
                     setTimeout(function() {
                         $('#output').val(data.result);
@@ -41,7 +53,7 @@
                 $.post('analysis', {
                     type: 'rm_duplicates',
                     source: 'Data2',
-                    data2: $('#inputB').val()
+                    data: $('#inputB').val()
                 }, function(data) {
                     setTimeout(function() {
                         $('#output').val(data.result);
@@ -75,11 +87,23 @@
                 }, 'json');
                 return false;
             });
-            $('#chk_consecutive').click(function() {
+            $('#chk_consecutive1').click(function() {
                 $.post('analysis', {
                     type: 'chk_consecutive',
                     source: 'Data1',
-                    data1: $('#inputA').val()
+                    data: $('#inputA').val()
+                }, function(data) {
+                    setTimeout(function() {
+                        $('#output').val(data.result);
+                    }, 800);
+                }, 'json');
+                return false;
+            });
+            $('#chk_consecutive2').click(function() {
+                $.post('analysis', {
+                    type: 'chk_consecutive',
+                    source: 'Data2',
+                    data: $('#inputB').val()
                 }, function(data) {
                     setTimeout(function() {
                         $('#output').val(data.result);
@@ -180,12 +204,14 @@
                 <textarea class="form-control" id="inputB" placeholder="Paste content here..."></textarea>
             </div>
             <div class="col-3 col-xl-2 p-0 pt-5">
-                <button onclick="javascript:void(0)" id="chk_duplicates" type="button" class="btn btn-primary btn-block">Check Duplicates (Data1)</button>
+                <button onclick="javascript:void(0)" id="chk_duplicates1" type="button" class="btn btn-primary btn-block">Check Duplicates (Data1)</button>
+                <button onclick="javascript:void(0)" id="chk_duplicates2" type="button" class="btn btn-primary btn-block">Check Duplicates (Data2)</button>
 				<button onclick="javascript:void(0)" id="rm_duplicates1" type="button" class="btn btn-primary btn-block">Remove Duplicates (Data1)</button>
 				<button onclick="javascript:void(0)" id="rm_duplicates2" type="button" class="btn btn-primary btn-block">Remove Duplicates (Data2)</button>
                 <button onclick="javascript:void(0)" id="chk_comm" type="button" class="btn btn-primary btn-block">Cross Compare (Common)</button>
                 <button onclick="javascript:void(0)" id="chk_diff" type="button" class="btn btn-primary btn-block">Cross Compare (Difference)</button>
-                <button onclick="javascript:void(0)" id="chk_consecutive" type="button" class="btn btn-primary btn-block">Check Consecutive (Data1)</button>
+                <button onclick="javascript:void(0)" id="chk_consecutive1" type="button" class="btn btn-primary btn-block">Check Consecutive (Data1)</button>
+                <button onclick="javascript:void(0)" id="chk_consecutive2" type="button" class="btn btn-primary btn-block">Check Consecutive (Data2)</button>
                 <br>
                 <br>
                 <button onclick="copyResult()" type="button" class="btn btn-primary btn-block">Copy Result (to Clipboard)</button>

@@ -21,33 +21,33 @@ def index():
 def sda():
     type = request.form.get('type')
     source = request.form.get('source')
-    data1 = precheck(str(request.form.get('data1')).split('\n'))
-    data2 = precheck(str(request.form.get('data2')).split('\n'))
-    result = []
-    if data1 == []:
-        if source == 'Data1' or source == 'Data1,Data2':
+    if source == 'Data1' or source == 'Data2':
+        data = precheck(str(request.form.get('data')).split('\n'))
+        if data == []:
+            return jsonify(result = source + ' is empty.\nPlease enter someting...')
+    elif source == 'Data1,Data2':
+        data1 = precheck(str(request.form.get('data1')).split('\n'))
+        data2 = precheck(str(request.form.get('data2')).split('\n'))
+        if data1 == []:
             return jsonify(result='Data1 is empty.\nPlease enter someting...')
-    elif data2 == []:
-        if source == 'Data2' or source == 'Data1,Data2':
+        elif data2 == []:
             return jsonify(result='Data2 is empty.\nPlease enter someting...')
+    result = []
     if type == 'chk_duplicates':
-        r1, elapsed_time = chk_duplicates(data1, data_type='list')
+        r1, elapsed_time = chk_duplicates(data, data_type='list')
         if r1 == []:
-            result.append('Data1 contains no duplicate values.\n')
+            result.append(source + ' contains no duplicate values.\n')
             result.append('Duration for process: ' +
                           str(round(elapsed_time, 3)) + ' sec.')
         else:
             result += print_result(
                 r1,
-                title1='Duplicate values found in Data1.',
+                title1='Duplicate values found in ' + source,
                 elapsed_time=elapsed_time,
                 result2file='off',
                 display='off')
     elif type == 'rm_duplicates':
-        if source == 'Data1' and data1 != []:
-            result = remove_duplicates(data1, data_type='list')
-        elif source == 'Data2' and data2 != []:
-            result = remove_duplicates(data2, data_type='list')
+        result = remove_duplicates(data, data_type='list')
     elif type == 'chk_comm':
         r1, elapsed_time = compare(data1, data2, mode='comm', data_type='list')
         if r1 == []:
@@ -98,26 +98,26 @@ def sda():
                 display='off')
     elif type == 'chk_consecutive':
         try:
-            r1, elapsed_time1 = chk_consecutive(data1, data_type='list')
-            tmp, elapsed_time2 = chk_duplicates(data1, data_type='list')
+            r1, elapsed_time1 = chk_consecutive(data, data_type='list')
+            tmp, elapsed_time2 = chk_duplicates(data, data_type='list')
             elapsed_time = elapsed_time1 + elapsed_time2
         except ValueError:
             result.append(
-                '[Error]Data1 contains non-numeric value. Please check and try again!'
+                '[Error]' + source + ' contains non-numeric value. Please check and try again!'
             )
         else:
             if tmp != []:
                 result.append(
-                    '[Warning]Duplicate values found in Data1.\nYou can "Check Duplicates (Data1)" to check it.\n'
+                    '[Warning]Duplicate values found in ' + source + '.\nYou can "Check Duplicates (' + source + ')" to check it.\n'
                 )
             if r1 == []:
-                result.append('Data1 contains consecutive natural numbers.\n')
+                result.append(source + ' contains consecutive natural numbers.\n')
                 result.append('Duration for process: ' +
                               str(round(elapsed_time, 3)) + ' sec.')
             else:
                 result += print_result(
                     r1,
-                    title1='Data1不连续',
+                    title1=source + '不连续',
                     title2='缺少以下元素：',
                     elapsed_time=elapsed_time,
                     result2file='off',
