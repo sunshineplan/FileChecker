@@ -39,11 +39,10 @@
                 }, 'json');
                 return false;
             });
-            $('#compare').click(function() {
+            $('#chk_consecutive').click(function() {
                 $.post('analysis', {
-                    type: 'compare',
-                    mode: $("input[name='compare_mode']:checked").val(),
-                    source: 'Data1,Data2',
+                    type: 'chk_consecutive',
+                    source: $("input[name='source']:checked").val(),
                     data1: $('#inputA').val(),
                     data2: $('#inputB').val()
                 }, function(data) {
@@ -53,10 +52,11 @@
                 }, 'json');
                 return false;
             });
-            $('#chk_consecutive').click(function() {
+            $('#compare').click(function() {
                 $.post('analysis', {
-                    type: 'chk_consecutive',
-                    source: $("input[name='source']:checked").val(),
+                    type: 'compare',
+                    mode: $("input[name='compare_mode']:checked").val(),
+                    source: 'Data1,Data2',
                     data1: $('#inputA').val(),
                     data2: $('#inputB').val()
                 }, function(data) {

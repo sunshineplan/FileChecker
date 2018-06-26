@@ -51,6 +51,32 @@ def sda():
                 display='off')
     elif type == 'rm_duplicates':
         result = remove_duplicates(data, data_type='list')
+    elif type == 'chk_consecutive':
+        try:
+            r1, elapsed_time1 = chk_consecutive(data, data_type='list')
+            tmp, elapsed_time2 = chk_duplicates(data, data_type='list')
+            elapsed_time = elapsed_time1 + elapsed_time2
+        except ValueError:
+            result.append(
+                '[Error]' + source + ' contains non-numeric value. Please check and try again!'
+            )
+        else:
+            if tmp != []:
+                result.append(
+                    '[Warning]Duplicate values found in ' + source + '.\nYou can "Check Duplicates (' + source + ')" to check it.\n'
+                )
+            if r1 == []:
+                result.append(source + ' contains consecutive natural numbers.\n')
+                result.append('Duration for process: ' +
+                              str(round(elapsed_time, 3)) + ' sec.')
+            else:
+                result += print_result(
+                    r1,
+                    title1=source + '不连续',
+                    title2='缺少以下元素：',
+                    elapsed_time=elapsed_time,
+                    result2file='off',
+                    display='off')
     elif type == 'compare':
         mode = request.form.get('mode')
         if mode == 'comm':
@@ -98,32 +124,6 @@ def sda():
                 result += print_result(
                     r2,
                     title1='Data2比Data1多以下内容',
-                    elapsed_time=elapsed_time,
-                    result2file='off',
-                    display='off')
-    elif type == 'chk_consecutive':
-        try:
-            r1, elapsed_time1 = chk_consecutive(data, data_type='list')
-            tmp, elapsed_time2 = chk_duplicates(data, data_type='list')
-            elapsed_time = elapsed_time1 + elapsed_time2
-        except ValueError:
-            result.append(
-                '[Error]' + source + ' contains non-numeric value. Please check and try again!'
-            )
-        else:
-            if tmp != []:
-                result.append(
-                    '[Warning]Duplicate values found in ' + source + '.\nYou can "Check Duplicates (' + source + ')" to check it.\n'
-                )
-            if r1 == []:
-                result.append(source + ' contains consecutive natural numbers.\n')
-                result.append('Duration for process: ' +
-                              str(round(elapsed_time, 3)) + ' sec.')
-            else:
-                result += print_result(
-                    r1,
-                    title1=source + '不连续',
-                    title2='缺少以下元素：',
                     elapsed_time=elapsed_time,
                     result2file='off',
                     display='off')
