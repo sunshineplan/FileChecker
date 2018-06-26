@@ -39,22 +39,10 @@
                 }, 'json');
                 return false;
             });
-            $('#chk_comm').click(function() {
+            $('#compare').click(function() {
                 $.post('analysis', {
-                    type: 'chk_comm',
-                    source: 'Data1,Data2',
-                    data1: $('#inputA').val(),
-                    data2: $('#inputB').val()
-                }, function(data) {
-                    setTimeout(function() {
-                        $('#output').val(data.result);
-                    }, 800);
-                }, 'json');
-                return false;
-            });
-            $('#chk_diff').click(function() {
-                $.post('analysis', {
-                    type: 'chk_diff',
+                    type: 'compare',
+                    mode: $("input[name='compare_mode']:checked").val(),
                     source: 'Data1,Data2',
                     data1: $('#inputA').val(),
                     data2: $('#inputB').val()
@@ -183,8 +171,15 @@
                     </label>
                 </div>
                 <br>
-                <button onclick="javascript:void(0)" id="chk_comm" type="button" class="btn btn-primary btn-block">Cross Compare (Common)</button>
-                <button onclick="javascript:void(0)" id="chk_diff" type="button" class="btn btn-primary btn-block">Cross Compare (Difference)</button>
+                <button onclick="javascript:void(0)" id="compare" type="button" class="btn btn-primary btn-block">Cross Compare</button>
+                <div class="d-flex justify-content-around">
+                    <label class="radio-inline">
+                        <input type="radio" name="compare_mode" value="comm" checked>Comm
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="compare_mode" value="diff">Differ
+                    </label>
+                </div>
                 <br>
                 <br>
                 <button onclick="copyResult()" type="button" class="btn btn-primary btn-block">Copy Result</button>
