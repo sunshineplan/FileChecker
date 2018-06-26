@@ -22,7 +22,10 @@ def sda():
     type = request.form.get('type')
     source = request.form.get('source')
     if source == 'Data1' or source == 'Data2':
-        data = precheck(str(request.form.get('data')).split('\n'))
+        if source == 'Data1':
+            data = precheck(str(request.form.get('data1')).split('\n'))
+        else:
+            data = precheck(str(request.form.get('data2')).split('\n'))
         if data == []:
             return jsonify(result = source + ' is empty.\nPlease enter someting...')
     elif source == 'Data1,Data2':
