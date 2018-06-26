@@ -101,7 +101,7 @@
             document.execCommand('Copy');
             result.setSelectionRange(0, 0);
             if (result.value !== '') {
-                alert('Text copied.');
+                alert('Text has been copied to clipboard.');
             }
         }
 
@@ -187,7 +187,7 @@
                 <button onclick="javascript:void(0)" id="chk_diff" type="button" class="btn btn-primary btn-block">Cross Compare (Difference)</button>
                 <br>
                 <br>
-                <button onclick="copyResult()" type="button" class="btn btn-primary btn-block">Copy Result (to Clipboard)</button>
+                <button onclick="copyResult()" type="button" class="btn btn-primary btn-block">Copy Result</button>
                 <br>
                 <br>
                 <button onclick="swap()" type="button" class="btn btn-primary btn-block">Data1<=>Data2</button>
