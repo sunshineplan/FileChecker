@@ -90,18 +90,18 @@ def main():
                     print('Duration for process: '+str(round(elapsed_time,3))+' sec.')
                     pause()
                 elif r1==[]:
-                    print('file2.txt完全包含file1.txt。\n')
-                    print_result(r2,title1='file2.txt比file1.txt多以下内容',elapsed_time=elapsed_time)
+                    print('file2.txt completely contains file1.txt。\n')
+                    print_result(r2,title1='file2.txt is more than file1.txt',elapsed_time=elapsed_time)
                     pause()
                 elif r2==[]:
-                    print('file1.txt完全包含file2.txt。\n')
-                    print_result(r1,title1='file1.txt比file2.txt多以下内容',elapsed_time=elapsed_time)
+                    print('file1.txt completely contains file2.txt。\n')
+                    print_result(r1,title1='file1.txt is more than file2.txt',elapsed_time=elapsed_time)
                     pause()
                 else:
-                    print('两个文件有互相不一致内容。\n')
-                    print_result(r1,title1='file1.txt比file2.txt多以下内容',ext='1')
+                    print('Two files have inconsistent content.\n')
+                    print_result(r1,title1='file1.txt is more than file2.txt',ext='1')
                     print()
-                    print_result(r2,title1='file2.txt比file1.txt多以下内容',ext='2',elapsed_time=elapsed_time)
+                    print_result(r2,title1='file2.txt is more than file1.txt',ext='2',elapsed_time=elapsed_time)
                     pause()
         elif choice=='4':
             try:
@@ -122,7 +122,7 @@ def main():
                     print('Duration for process: '+str(round(elapsed_time,3))+' sec.')
                     pause()
                 else:
-                    print_result(r1,title1='file1.txt不连续',title2='缺少以下元素：',elapsed_time=elapsed_time)
+                    print_result(r1,title1='file1.txt is not consecutive',title2='The following numbers are missing:',elapsed_time=elapsed_time)
                     pause()
         elif choice.lower()=='q':
             break

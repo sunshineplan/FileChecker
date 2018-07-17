@@ -2,8 +2,8 @@
 # coding:utf-8
 
 def precheck(list_data):
-    data=[i.strip() for i in list_data]     #删除空格
-    data=[i for i in data if i!='']         #删除空值
+    data=[i.strip() for i in list_data]     #remove backspace
+    data=[i for i in data if i!='']         #remove empty string
     output=sort_data(data)
     return output
 

@@ -22,7 +22,7 @@ def chk_duplicates(data,data_type='file',display_warning='on'):
             list.remove(i)
             continue
         if list.count(i)!=1:
-            result.append(str(i)+'\t\t出现了'+str(list.count(i))+'次')
+            result.append(str(i)+'\t\tappears '+str(list.count(i))+' time(s)')
         tmp=i
         list.remove(i)
     result=sort_data(result)
@@ -64,7 +64,7 @@ def chk_consecutive(data,data_type='file'):
         list_data=file2list(data)
     else:
         list_data=data
-    int_list=sorted(list(map(int,list_data)))         #将字符数组转换成数字数组
+    int_list=sorted(list(map(int,list_data)))         #Convert all strings in a list to int
     start=int_list[0]
     end=int_list[-1]
     full_list=list(range(start,end+1))

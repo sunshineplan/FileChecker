@@ -72,8 +72,8 @@ def sda():
             else:
                 result += print_result(
                     r1,
-                    title1=source + '不连续',
-                    title2='缺少以下元素：',
+                    title1=source + ' is not consecutive',
+                    title2='The following numbers are missing:',
                     elapsed_time=elapsed_time,
                     result2file='off',
                     display='off')
@@ -101,29 +101,29 @@ def sda():
                 result.append('Duration for process: ' +
                               str(round(elapsed_time, 3)) + ' sec.')
             elif r1 == []:
-                result.append('Data2完全包含Data1。\n')
+                result.append('Data2 completely contains Data1.\n')
                 result += print_result(
                     r2,
-                    title1='Data2比Data1多以下内容',
+                    title1='Data2 is more than Data1',
                     elapsed_time=elapsed_time,
                     result2file='off',
                     display='off')
             elif r2 == []:
-                result.append('Data1完全包含Data2。\n')
+                result.append('Data1 completely contains Data2.\n')
                 result += print_result(
                     r1,
-                    title1='Data1比Data2多以下内容',
+                    title1='Data1 is more than Data2',
                     elapsed_time=elapsed_time,
                     result2file='off',
                     display='off')
             else:
-                result.append('两个数据有互相不一致内容。\n')
+                result.append('Two files have inconsistent content.\n')
                 result += print_result(
-                    r1, title1='Data1比Data2多以下内容', result2file='off', display='off')
+                    r1, title1='Data1 is more than Data2', result2file='off', display='off')
                 result.append('')
                 result += print_result(
                     r2,
-                    title1='Data2比Data1多以下内容',
+                    title1='Data2 is more than Data1',
                     elapsed_time=elapsed_time,
                     result2file='off',
                     display='off')

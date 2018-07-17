@@ -12,11 +12,11 @@ def print_result(result,title1='',title2='result:',ext='',elapsed_time=-1,result
     filename='result'+ext+'.txt'
     if record>17 and result2file=='on':
         list2file(content+result,filename)
-        content.append('由于结果太大，已将其输出到'+filename)
+        content.append('Since the result is too large, it has been output to '+filename)
     else:
         content=content+result
     if elapsed_time>=0:
-        content.append('\n本次处理耗时'+str(round(elapsed_time,3))+'秒')
+        content.append('\nDuration for process: '+str(round(elapsed_time,3))+' sec.')
     if display=='on':
         print('\n'.join(content))
         return 0
