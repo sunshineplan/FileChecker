@@ -1,5 +1,5 @@
 # Simple Data Analysis
-[Web](https://sda.shlib.ml/) and Desktop Application for Simple Data Analysis.
+[Web](https://sda.shlib.cf/) and Desktop Application for Simple Data Analysis.
 
 ## Features
 
