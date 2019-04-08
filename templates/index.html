@@ -162,28 +162,28 @@
 				<button onclick="javascript:void(0)" id="rm_duplicates" type="button" class="btn btn-primary btn-block">Remove Duplicates</button>
                 <button onclick="javascript:void(0)" id="chk_consecutive" type="button" class="btn btn-primary btn-block">Check Consecutive</button>
                 <div class="d-flex justify-content-around">
-                    <label class="radio-inline">
-                        <input type="radio" name="source" value="Data1" checked>Data1
+                    <label class="radio-inline m-0">
+                        <input type="radio" name="source" value="Data1" checked> Data1
                     </label>
-                    <label class="radio-inline">
-                        <input type="radio" name="source" value="Data2">Data2
+                    <label class="radio-inline m-0">
+                        <input type="radio" name="source" value="Data2"> Data2
                     </label>
                 </div>
                 <br>
                 <button onclick="javascript:void(0)" id="compare" type="button" class="btn btn-primary btn-block">Cross Compare</button>
                 <div class="d-flex justify-content-around">
-                    <label class="radio-inline">
-                        <input type="radio" name="compare_mode" value="comm" checked>Comm
+                    <label class="radio-inline m-0">
+                        <input type="radio" name="compare_mode" value="comm" checked> Comm
                     </label>
-                    <label class="radio-inline">
-                        <input type="radio" name="compare_mode" value="diff">Differ
+                    <label class="radio-inline m-0">
+                        <input type="radio" name="compare_mode" value="diff"> Differ
                     </label>
                 </div>
-                <div>
-                    <input type="checkbox" id="ignore_duplicates" checked>
-                    <label for="ignore_duplicates">Ignore Duplicates</label>
+                <div class="d-flex justify-content-around">
+                    <label class="checkbox-inline m-0">
+                        <input type="checkbox" id="ignore_duplicates" checked> Ignore Duplicates
+                    </label>
                 </div>
-                <br>
                 <br>
                 <button onclick="copyResult()" type="button" class="btn btn-primary btn-block">Copy Result</button>
                 <br>
