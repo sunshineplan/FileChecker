@@ -79,6 +79,10 @@ def sda():
                     display='off')
     elif type == 'compare':
         mode = request.form.get('mode')
+        ignore_duplicates = request.form.get('ignore_duplicates')
+        if ignore_duplicates == 'true':
+            data1 = remove_duplicates(data1, data_type='list')
+            data2 = remove_duplicates(data2, data_type='list')
         if mode == 'comm':
             r1, elapsed_time = compare(data1, data2, mode='comm', data_type='list')
             if r1 == []:

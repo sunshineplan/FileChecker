@@ -58,7 +58,8 @@
                     mode: $("input[name='compare_mode']:checked").val(),
                     source: 'Data1,Data2',
                     data1: $('#inputA').val(),
-                    data2: $('#inputB').val()
+                    data2: $('#inputB').val(),
+                    ignore_duplicates: $('#ignore_duplicates').prop('checked')
                 }, function(data) {
                     setTimeout(function() {
                         $('#output').val(data.result);
@@ -177,6 +178,10 @@
                     <label class="radio-inline">
                         <input type="radio" name="compare_mode" value="diff">Differ
                     </label>
+                </div>
+                <div>
+                    <input type="checkbox" id="ignore_duplicates" checked>
+                    <label for="ignore_duplicates">Ignore Duplicates</label>
                 </div>
                 <br>
                 <br>
