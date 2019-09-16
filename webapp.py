@@ -1,12 +1,11 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
-from flask import Flask, render_template, request, jsonify
-from lib.func import chk_duplicates
-from lib.func import remove_duplicates
-from lib.func import compare
-from lib.func import chk_consecutive
+from flask import Flask, jsonify, render_template, request
+
 from lib.comm import precheck
+from lib.func import (chk_consecutive, chk_duplicates, compare,
+                      remove_duplicates)
 from lib.output import print_result
 
 app = Flask(__name__)
@@ -27,7 +26,7 @@ def sda():
         else:
             data = precheck(str(request.form.get('data2')).split('\n'))
         if data == []:
-            return jsonify(result = source + ' is empty.\nPlease enter someting...')
+            return jsonify(result=source + ' is empty.\nPlease enter someting...')
     elif source == 'Data1,Data2':
         data1 = precheck(str(request.form.get('data1')).split('\n'))
         data2 = precheck(str(request.form.get('data2')).split('\n'))
@@ -58,15 +57,19 @@ def sda():
             elapsed_time = elapsed_time1 + elapsed_time2
         except ValueError:
             result.append(
-                '[Error]' + source + ' contains non-numeric value. Please check and try again!'
+                '[Error]' + source +
+                ' contains non-numeric value. Please check and try again!'
             )
         else:
             if tmp != []:
                 result.append(
-                    '[Warning]Duplicate values found in ' + source + '.\nYou can "Check Duplicates (' + source + ')" to check it.\n'
+                    '[Warning]Duplicate values found in ' + source +
+                    '.\nYou can "Check Duplicates (' +
+                    source + ')" to check it.\n'
                 )
             if r1 == []:
-                result.append(source + ' contains consecutive natural numbers.\n')
+                result.append(
+                    source + ' contains consecutive natural numbers.\n')
                 result.append('Duration for process: ' +
                               str(round(elapsed_time, 3)) + ' sec.')
             else:
@@ -84,7 +87,8 @@ def sda():
             data1 = remove_duplicates(data1, data_type='list')
             data2 = remove_duplicates(data2, data_type='list')
         if mode == 'comm':
-            r1, elapsed_time = compare(data1, data2, mode='comm', data_type='list')
+            r1, elapsed_time = compare(
+                data1, data2, mode='comm', data_type='list')
             if r1 == []:
                 result.append('Two data contain no common values.\n')
                 result.append('Duration for process: ' +
