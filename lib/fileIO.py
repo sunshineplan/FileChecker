@@ -3,7 +3,7 @@
 
 from os import getenv, name
 
-from lib.comm import precheck, sort_data
+from lib.comm import precheck
 
 
 def file2list(filename, check='on', display_warning='on'):
