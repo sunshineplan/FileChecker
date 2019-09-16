@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 # coding:utf-8
 
+from re import match
+
 
 def precheck(list_data):
     data = [i.strip() for i in list_data]  # remove backspace
@@ -10,6 +12,4 @@ def precheck(list_data):
 
 
 def sort_data(list_data):
-    #output=sorted(list_data, key=lambda item:(int(item.partition(' ')[0]) if item[0].isdigit() else float('inf'), item))
-    output = sorted(list_data)
-    return output
+    return sorted(list_data, key=lambda i: (int(match(r'^\d+', i).group(0)) if match(r'^\d+', i) else float('inf'), i))
