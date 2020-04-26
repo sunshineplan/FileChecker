@@ -32,7 +32,7 @@ writeLogrotateScrip() {
 }
 
 setupNGINX() {
-	cp -s /var/www/sda/SimpleDataAnalysis.conf /etc/nginx/conf.d
+    cp -s /var/www/sda/SimpleDataAnalysis.conf /etc/nginx/conf.d
     sed -i "s/\$domain/$domain/" /var/www/sda/SimpleDataAnalysis.conf
     service nginx reload
 }
