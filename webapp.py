@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 from flask import Flask, jsonify, render_template, request
-
 from lib.comm import precheck
 from lib.func import (chk_consecutive, chk_duplicates, compare,
                       remove_duplicates)

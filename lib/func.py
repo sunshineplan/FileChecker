@@ -3,7 +3,7 @@
 
 from time import time
 
-from lib.comm import precheck, sort_data
+from lib.comm import precheck, sort
 from lib.fileIO import file2list, save_original
 
 
@@ -25,7 +25,7 @@ def chk_duplicates(data, data_type='file', display_warning='on'):
             result.append(str(i)+'\t\tappears '+str(_list.count(i))+' time(s)')
         tmp = i
         _list.remove(i)
-    result = sort_data(result)
+    result = sort(result)
     elapsed_time = time()-start_time
     return result, elapsed_time
 
@@ -55,7 +55,7 @@ def compare(data1, data2, data_type='file', mode='diff', display_warning='on'):
         for i in list2:
             if list1.count(i) != 0:
                 result.append(i)
-    result = sort_data(result)
+    result = sort(result)
     elapsed_time = time()-start_time
     return result, elapsed_time
 
@@ -63,29 +63,26 @@ def compare(data1, data2, data_type='file', mode='diff', display_warning='on'):
 def chk_consecutive(data, data_type='file'):
     start_time = time()
     if data_type == 'file':
-        list_data = file2list(data)
+        l = file2list(data)
     else:
-        list_data = data
+        l = data
     # Convert all strings in a list to int
-    int_list = sorted(list(map(int, list_data)))
-    start = int_list[0]
-    end = int_list[-1]
-    full_list = list(range(start, end+1))
-    result, _ = compare(full_list, int_list, data_type='list')
+    l = sorted(list(map(int, l)))
+    full = list(range(l[0], l[-1]+1))
+    result, _ = compare(full, l, data_type='list')
     result = list(map(str, result))
     if result != [] and data_type == 'file':
-        str_list = list(map(str, int_list))
-        save_original(data, str_list)
+        save_original(data, list(map(str, l)))
     elapsed_time = time()-start_time
     return result, elapsed_time
 
 
 def remove_duplicates(data, data_type='file'):
     if data_type == 'file':
-        list_data = file2list(data)
+        l = file2list(data)
     else:
-        list_data = data
-    list_data = sort_data(list(set(list_data)))
+        l = data
+    l = sort(list(set(l)))
     if data_type == 'file':
-        save_original(data, list_data, mode='remove_duplicates')
-    return list_data
+        save_original(data, l, mode='remove_duplicates')
+    return l
