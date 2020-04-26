@@ -1,0 +1,9 @@
+[Unit]
+Description=uWSGI instance to serve Simple Data Analysis
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/uwsgi --ini /var/www/sda/SimpleDataAnalysis.ini
+
+[Install]
+WantedBy=multi-user.target
