@@ -9,19 +9,24 @@
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <title>Simple Data Analysis</title>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.53.2/codemirror.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.53.2/addon/display/placeholder.min.js'></script>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.53.2/codemirror.min.css' rel='stylesheet'>
     <link href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css' rel='stylesheet'>
     <link href="{{ url_for('static', filename='style.css') }}" rel='stylesheet'>
 
     <script>
         $(function() {
+            inputA = CodeMirror.fromTextArea(document.getElementById('inputA'), { lineNumbers: true, lineWrapping: true });
+            inputB = CodeMirror.fromTextArea(document.getElementById('inputB'), { lineNumbers: true, lineWrapping: true });
             $('#chk_duplicates').click(function() {
                 $('#chk_duplicates').attr('disabled', true);
                 $.post('analysis', {
                     func: 'chk_duplicates',
                     source: $('input[name="source"]:checked').val(),
-                    data1: $('#inputA').val(),
-                    data2: $('#inputB').val()
+                    data1: inputA.getValue(),
+                    data2: inputB.getValue()
                 }, function(data) {
                     setTimeout(function() {
                         $('#output').val(data);
@@ -34,8 +39,8 @@
                 $.post('analysis', {
                     func: 'rm_duplicates',
                     source: $('input[name="source"]:checked').val(),
-                    data1: $('#inputA').val(),
-                    data2: $('#inputB').val()
+                    data1: inputA.getValue(),
+                    data2: inputB.getValue()
                 }, function(data) {
                     setTimeout(function() {
                         $('#output').val(data);
@@ -48,8 +53,8 @@
                 $.post('analysis', {
                     func: 'chk_consecutive',
                     source: $('input[name="source"]:checked').val(),
-                    data1: $('#inputA').val(),
-                    data2: $('#inputB').val()
+                    data1: inputA.getValue(),
+                    data2: inputB.getValue()
                 }, function(data) {
                     setTimeout(function() {
                         $('#output').val(data);
@@ -63,8 +68,8 @@
                     func: 'compare',
                     mode: $('input[name="compare_mode"]:checked').val(),
                     source: 'Data1,Data2',
-                    data1: $('#inputA').val(),
-                    data2: $('#inputB').val(),
+                    data1: inputA.getValue(),
+                    data2: inputB.getValue(),
                     ignore_duplicates: $('#ignore_duplicates').prop('checked')
                 }, function(data) {
                     setTimeout(function() {
@@ -86,11 +91,11 @@
         <div class='row'>
             <div class='col-3'>
                 <label for='inputA'>Data1</label>
-                <textarea class='form-control' id='inputA' placeholder='Paste content here...'></textarea>
+                <textarea id='inputA' placeholder='Paste content here...'></textarea>
             </div>
             <div class='col-3 pl-0'>
                 <label for='inputB'>Data2</label>
-                <textarea class='form-control' id='inputB' placeholder='Paste content here...'></textarea>
+                <textarea id='inputB' placeholder='Paste content here...'></textarea>
             </div>
             <div class='col-2 p-0 pt-5'>
                 <button id='chk_duplicates' type='button' class='btn btn-primary btn-block'>Check Duplicates</button>
