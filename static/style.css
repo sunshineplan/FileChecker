@@ -1,0 +1,19 @@
+.navbar {
+    height: 80px;
+}
+
+.container-fluid {
+    position: fixed;
+    height: calc(100% - 80px);
+}
+
+.row {
+    height: 100%;
+}
+
+textarea.form-control {
+    resize: none;
+    padding-left: 0.8em;
+    height: calc(100% - 47px);
+    border: 1px solid #007bff;
+}
