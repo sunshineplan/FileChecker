@@ -25,8 +25,11 @@ def chk_duplicates(data):
 
 def compare(data1, data2, mode='diff'):
     start_time = time()
-    data1 = precheck(data1)
-    data2 = precheck(data2)
+    try:
+        data1 = precheck(data1)
+        data2 = precheck(data2)
+    except AttributeError:
+        pass
     result = []
     if mode == 'diff':
         result = data1.copy()

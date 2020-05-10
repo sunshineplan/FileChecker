@@ -42,6 +42,7 @@ $(document).ajaxSend(function () {
 }).ajaxError(function () {
     setTimeout(function () {
         $('#output').val('Oops, we encountered a problem! Please contact your administrator for assistance.');
+        $('button').attr('disabled', false);
     }, 800);
 });
 

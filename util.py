@@ -4,14 +4,14 @@
 from re import match
 
 
-def precheck(l):
-    output = [i.strip() for i in l]
-    output = [i for i in output if i != '']
-    return sort(output)
+def precheck(data):
+    data = [i.strip() for i in data]
+    data = [i for i in data if i != '']
+    return sort(data)
 
 
-def sort(l):
-    return sorted(l, key=lambda i: (int(match(r'^\d+', i).group(0)) if match(r'^\d+', i) else float('inf'), i))
+def sort(data):
+    return sorted(data, key=lambda i: (int(match(r'^\d+', i).group(0)) if match(r'^\d+', i) else float('inf'), i))
 
 
 def print_result(result, title1='', title2='result:', ext='', elapsed_time=-1):

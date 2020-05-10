@@ -21,7 +21,7 @@
             inputA = CodeMirror.fromTextArea(document.getElementById('inputA'), { lineNumbers: true, lineWrapping: true });
             inputB = CodeMirror.fromTextArea(document.getElementById('inputB'), { lineNumbers: true, lineWrapping: true });
             $('#chk_duplicates').click(function () {
-                $('#chk_duplicates').attr('disabled', true);
+                $('button').attr('disabled', true);
                 $.post('analysis', {
                     func: 'chk_duplicates',
                     source: $('input[name="source"]:checked').val(),
@@ -30,12 +30,12 @@
                 }, function (data) {
                     setTimeout(function () {
                         $('#output').val(data);
-                        $('#chk_duplicates').attr('disabled', false);
+                        $('button').attr('disabled', false);
                     }, 800);
                 }, 'json');
             });
             $('#rm_duplicates').click(function () {
-                $('#rm_duplicates').attr('disabled', true);
+                $('button').attr('disabled', true);
                 $.post('analysis', {
                     func: 'rm_duplicates',
                     source: $('input[name="source"]:checked').val(),
@@ -44,12 +44,12 @@
                 }, function (data) {
                     setTimeout(function () {
                         $('#output').val(data);
-                        $('#rm_duplicates').attr('disabled', false);
+                        $('button').attr('disabled', false);
                     }, 800);
                 }, 'json');
             });
             $('#chk_consecutive').click(function () {
-                $('#chk_consecutive').attr('disabled', true);
+                $('button').attr('disabled', true);
                 $.post('analysis', {
                     func: 'chk_consecutive',
                     source: $('input[name="source"]:checked').val(),
@@ -58,12 +58,12 @@
                 }, function (data) {
                     setTimeout(function () {
                         $('#output').val(data);
-                        $('#chk_consecutive').attr('disabled', false);
+                        $('button').attr('disabled', false);
                     }, 800);
                 }, 'json');
             });
             $('#compare').click(function () {
-                $('#compare').attr('disabled', true);
+                $('button').attr('disabled', true);
                 $.post('analysis', {
                     func: 'compare',
                     mode: $('input[name="compare_mode"]:checked').val(),
@@ -74,12 +74,12 @@
                 }, function (data) {
                     setTimeout(function () {
                         $('#output').val(data);
-                        $('#compare').attr('disabled', false);
+                        $('button').attr('disabled', false);
                     }, 800);
                 }, 'json');
             });
             $('#diff').click(function () {
-                $('#diff').attr('disabled', true);
+                $('button').attr('disabled', true);
                 $.post('analysis', {
                     func: 'diff',
                     source: 'Data1,Data2',
@@ -88,7 +88,7 @@
                 }, function (data) {
                     setTimeout(function () {
                         $('#output').val(data);
-                        $('#diff').attr('disabled', false);
+                        $('button').attr('disabled', false);
                     }, 800);
                 }, 'json');
             });
