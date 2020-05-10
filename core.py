@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+from difflib import unified_diff
 from time import time
 
 from util import precheck, sort
@@ -9,21 +10,23 @@ def chk_duplicates(data):
     start_time = time()
     result = []
     tmp = ''
-    l = precheck(data)
-    for i in l.copy():
+    data = precheck(data)
+    for i in data.copy():
         if i == tmp:
-            l.remove(i)
+            data.remove(i)
             continue
-        if l.count(i) != 1:
-            result.append(f'{i}\t\tappears {l.count(i)} time(s)')
+        if data.count(i) != 1:
+            result.append(f'{i}\t\tappears {data.count(i)} time(s)')
         tmp = i
-        l.remove(i)
+        data.remove(i)
     result = sort(result)
     return result, time()-start_time
 
 
 def compare(data1, data2, mode='diff'):
     start_time = time()
+    data1 = precheck(data1)
+    data2 = precheck(data2)
     result = []
     if mode == 'diff':
         result = data1.copy()
@@ -41,8 +44,13 @@ def compare(data1, data2, mode='diff'):
 
 def chk_consecutive(data):
     start_time = time()
-    l = sorted(list(map(int, data)))
-    full = list(range(l[0], l[-1]+1))
-    result, _ = compare(full, l)
+    data = precheck(data)
+    data = sorted(list(map(int, data)))
+    full = list(range(data[0], data[-1]+1))
+    result, _ = compare(full, data)
     result = list(map(str, result))
     return result, time()-start_time
+
+
+def diff(data1, data2):
+    return unified_diff(data1, data2, fromfile='Data1', tofile='Data2')

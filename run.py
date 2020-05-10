@@ -3,8 +3,8 @@
 
 from flask import Flask, jsonify, render_template, request
 
-from core import chk_consecutive, chk_duplicates, compare
-from util import precheck, print_result, sort
+from core import chk_consecutive, chk_duplicates, compare, diff
+from util import precheck, print_result
 
 app = Flask(__name__)
 
@@ -20,14 +20,14 @@ def sda():
     source = request.form.get('source')
     if source == 'Data1' or source == 'Data2':
         if source == 'Data1':
-            data = precheck(request.form.get('data1').split('\n'))
+            data = request.form.get('data1').splitlines()
         else:
-            data = precheck(request.form.get('data2').split('\n'))
+            data = request.form.get('data2').splitlines()
         if data == []:
             return jsonify(f'{source} is empty.\nPlease enter someting...')
     elif source == 'Data1,Data2':
-        data1 = precheck(request.form.get('data1').split('\n'))
-        data2 = precheck(request.form.get('data2').split('\n'))
+        data1 = request.form.get('data1').splitlines()
+        data2 = request.form.get('data2').splitlines()
         if data1 == []:
             return jsonify('Data1 is empty.\nPlease enter someting...')
         elif data2 == []:
@@ -42,7 +42,7 @@ def sda():
             result += print_result(
                 r1, f'Duplicate values found in {source}', elapsed_time=elapsed_time)
     elif func == 'rm_duplicates':
-        result = sort(list(set(data)))
+        result = precheck(list(set(data)))
     elif func == 'chk_consecutive':
         try:
             r1, elapsed_time1 = chk_consecutive(data)
@@ -66,8 +66,8 @@ def sda():
         mode = request.form.get('mode')
         ignore_duplicates = request.form.get('ignore_duplicates')
         if ignore_duplicates == 'true':
-            data1 = sort(list(set(data1)))
-            data2 = sort(list(set(data2)))
+            data1 = list(set(data1))
+            data2 = list(set(data2))
         if mode == 'comm':
             r1, elapsed_time = compare(data1, data2, mode='comm')
             if r1 == []:
@@ -97,6 +97,8 @@ def sda():
                 result.append('')
                 result += print_result(r2, 'Data2 is more than Data1',
                                        elapsed_time=elapsed_time)
+    elif func == 'diff':
+        result = diff(data1, data2)
     output = '\n'.join(result)
     return jsonify(output)
 

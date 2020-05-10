@@ -17,52 +17,52 @@
     <link href="{{ url_for('static', filename='style.css') }}" rel='stylesheet'>
 
     <script>
-        $(function() {
+        $(function () {
             inputA = CodeMirror.fromTextArea(document.getElementById('inputA'), { lineNumbers: true, lineWrapping: true });
             inputB = CodeMirror.fromTextArea(document.getElementById('inputB'), { lineNumbers: true, lineWrapping: true });
-            $('#chk_duplicates').click(function() {
+            $('#chk_duplicates').click(function () {
                 $('#chk_duplicates').attr('disabled', true);
                 $.post('analysis', {
                     func: 'chk_duplicates',
                     source: $('input[name="source"]:checked').val(),
                     data1: inputA.getValue(),
                     data2: inputB.getValue()
-                }, function(data) {
-                    setTimeout(function() {
+                }, function (data) {
+                    setTimeout(function () {
                         $('#output').val(data);
                         $('#chk_duplicates').attr('disabled', false);
                     }, 800);
                 }, 'json');
             });
-            $('#rm_duplicates').click(function() {
+            $('#rm_duplicates').click(function () {
                 $('#rm_duplicates').attr('disabled', true);
                 $.post('analysis', {
                     func: 'rm_duplicates',
                     source: $('input[name="source"]:checked').val(),
                     data1: inputA.getValue(),
                     data2: inputB.getValue()
-                }, function(data) {
-                    setTimeout(function() {
+                }, function (data) {
+                    setTimeout(function () {
                         $('#output').val(data);
                         $('#rm_duplicates').attr('disabled', false);
                     }, 800);
                 }, 'json');
             });
-            $('#chk_consecutive').click(function() {
+            $('#chk_consecutive').click(function () {
                 $('#chk_consecutive').attr('disabled', true);
                 $.post('analysis', {
                     func: 'chk_consecutive',
                     source: $('input[name="source"]:checked').val(),
                     data1: inputA.getValue(),
                     data2: inputB.getValue()
-                }, function(data) {
-                    setTimeout(function() {
+                }, function (data) {
+                    setTimeout(function () {
                         $('#output').val(data);
                         $('#chk_consecutive').attr('disabled', false);
                     }, 800);
                 }, 'json');
             });
-            $('#compare').click(function() {
+            $('#compare').click(function () {
                 $('#compare').attr('disabled', true);
                 $.post('analysis', {
                     func: 'compare',
@@ -71,10 +71,24 @@
                     data1: inputA.getValue(),
                     data2: inputB.getValue(),
                     ignore_duplicates: $('#ignore_duplicates').prop('checked')
-                }, function(data) {
-                    setTimeout(function() {
+                }, function (data) {
+                    setTimeout(function () {
                         $('#output').val(data);
                         $('#compare').attr('disabled', false);
+                    }, 800);
+                }, 'json');
+            });
+            $('#diff').click(function () {
+                $('#diff').attr('disabled', true);
+                $.post('analysis', {
+                    func: 'diff',
+                    source: 'Data1,Data2',
+                    data1: inputA.getValue(),
+                    data2: inputB.getValue(),
+                }, function (data) {
+                    setTimeout(function () {
+                        $('#output').val(data);
+                        $('#diff').attr('disabled', false);
                     }, 800);
                 }, 'json');
             });
@@ -89,17 +103,17 @@
     </header>
     <div class='container-fluid'>
         <div class='row'>
-            <div class='col-3'>
+            <div class='input col-3'>
                 <label for='inputA'>Data1</label>
                 <textarea id='inputA' placeholder='Paste content here...'></textarea>
             </div>
-            <div class='col-3 pl-0'>
+            <div class='input col-3 pl-0'>
                 <label for='inputB'>Data2</label>
                 <textarea id='inputB' placeholder='Paste content here...'></textarea>
             </div>
-            <div class='col-2 p-0 pt-5'>
+            <div class='input col-2 p-0 pt-5'>
                 <button id='chk_duplicates' type='button' class='btn btn-primary btn-block'>Check Duplicates</button>
-				<button id='rm_duplicates' type='button' class='btn btn-primary btn-block'>Remove Duplicates</button>
+                <button id='rm_duplicates' type='button' class='btn btn-primary btn-block'>Remove Duplicates</button>
                 <button id='chk_consecutive' type='button' class='btn btn-primary btn-block'>Check Consecutive</button>
                 <div class='d-flex justify-content-around'>
                     <label class='radio-inline m-0'>
@@ -125,6 +139,9 @@
                     </label>
                 </div>
                 <br>
+                <button id='diff' type='button' class='btn btn-primary btn-block'>Diff</button>
+                <br>
+                <br>
                 <button onclick='copyResult()' type='button' class='btn btn-primary btn-block'>Copy Result</button>
                 <br>
                 <br>
@@ -142,5 +159,3 @@
 </body>
 
 </html>
-
-
