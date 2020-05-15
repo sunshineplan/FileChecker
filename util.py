@@ -5,7 +5,7 @@ from re import match
 
 
 def precheck(data):
-    data = [i.strip() for i in data]
+    data = [str(i).strip() for i in data]
     data = [i for i in data if i != '']
     return sort(data)
 
